@@ -16,11 +16,11 @@
 			border-collapse: collapse;
       margin: auto;
 		}
-		/* table, td, th{
+		table, td, th{
 			border: 1px solid black;
 			padding: 5px;
       text-align: center;
-		} */
+		}
 	</style>
 </head>
 <body>
@@ -67,16 +67,6 @@
   		$result = mysqli_query($conn,$sql);
 
   		while($row = mysqli_fetch_array($result)) {
-  		    // echo "<tr>";
-    		  //   echo "<td>" . $row['EventID'] . "</td>";
-    		  //   echo "<td>" . $row['EventCode'] . "</td>";
-    		  //   echo "<td>" . $row['EventName'] . "</td>";
-    		  //   echo "<td>" . $row['EventDate'] . "</td>";
-    		  //   echo "<td>" . $row['EventStartTime'] . "</td>";
-    		  //   echo "<td>" . $row['EventEndTime'] . "</td>";
-    		  //   echo "<td>" . $row['EventVenue'] . "</td>";
-          //   echo "<td><button class=btn-primary name=updateEvent type=button value=updateEvent()>Update</button></td><td><button class=btn-success name=attendance type=button value=attendance()>Attendance</button></td><td><button class=btn-danger name=deleteEvent type=button value=deleteEvent()>Delete</button></td>";
-  		    // echo "</tr>";
           ?>
           <tr class="row-eventTable">
     		    <td id="EventID"><?php echo $row['EventID'] ?></td>
