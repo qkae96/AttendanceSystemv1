@@ -6,22 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/jscript.js"></script>
   <title>Event</title>
-	<style>
-		table{
-			width:90%;
-			border-collapse: collapse;
-      margin: auto;
-		}
-		table, td, th{
-			border: 1px solid black;
-			padding: 5px;
-      text-align: center;
-		}
-	</style>
+  <style>
+  #eventTable{
+    width:90%;
+    border-collapse: collapse;
+    margin: auto;
+    text-align: center;
+  }
+
+  th{
+    text-align: center;
+  }
+
+  #addEventButton{
+    float: right;
+  }
+
+  </style>
 </head>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -46,7 +52,12 @@
   </nav>
   <br><br><br><br>
 
-  <table class="table table-striped">
+  <div style="width: 8%;">
+    <button type="button" class="btn btn-outline-primary" id="addEventButton" onclick="addEvent()">+</button>
+  </div>
+
+  <div>
+  <table class="table table-striped" id="eventTable" style="cursor: pointer;" onclick="getEventID()">
     <thead>
       <tr>
         <th class="EventID">Event ID</th>
@@ -59,7 +70,7 @@
         <th class="Action" colspan="3">Action</th>
       </tr>
     </thead>
-    <tbody class="eventTable">
+    <tbody>
     <?php
       $Event = new Event;
       $conn = connectTo();
@@ -68,8 +79,8 @@
 
   		while($row = mysqli_fetch_array($result)) {
           ?>
-          <tr class="row-eventTable">
-    		    <td id="EventID"><?php echo $row['EventID'] ?></td>
+          <tr>
+    		    <td><?php echo $row['EventID'] ?></td>
             <?php
     		    echo "<td>" . $row['EventCode'] . "</td>";
     		    echo "<td>" . $row['EventName'] . "</td>";
@@ -78,62 +89,15 @@
     		    echo "<td>" . $row['EventEndTime'] . "</td>";
     		    echo "<td>" . $row['EventVenue'] . "</td>";
             ?>
-            <td><button class=btn-primary name=updateEvent type=button onclick="updateEvent(this)">Update</button></td>
-            <td><button class=btn-success name=attendance type=button onclick="attendance(this)">Attendance</button></td>
-            <td><button class=btn-danger name=deleteEvent type=button onclick="deleteEvent(this)">Delete</button></td>
+            <td><button class=btn-primary name=updateEvent type=button onclick="test()">Update</button></td>
+            <td><button class=btn-success name=attendance type=button>Attendance</button></td>
+            <td><button class=btn-danger name=deleteEvent type=button>Delete</button></td>
   		    </tr>
           <?php
   			}
       ?>
     </tbody>
   </table>
-    <div>
-        <a href="php/eventform.php">Create new event</a>
-    </div>
-    <div>
-        <a href="DeleteEvent.php">Delete existing event</a>
-    </div>
-    </body>
-    <script>
-    function updateEvent(x){
-      alert("Row index is: " + x.rowIndex);
-      location.href('php/updateEvent.php');
-    }
-
-    function attendance(){
-      location.href('php/attendance.php');
-    }
-
-    function deleteEvent(){
-      location.href('php/deleteEvent.php');
-    }
-    // var table = document.getElementsByTagName('table')[0];
-    // var tbody = table.getElementsByTagName('tbody')[0];
-    // tbody.onclick = function(e){
-    //   e = e || window.event;
-    //   var data = [];
-    //   var target = e.srcElement || e.target;
-    //   while (target&&target.nodeName!=="TD") {
-    //     target = target.parentNode;
-    //   }
-    //   if (target) {
-    //     var cells = target.getElementsByTagName('EventID');
-    //     for (var i = 0; i < cells.length; i++) {
-    //       data.push(cells[i].innerHTML);
-    //     }
-    //   }
-    //   alert(data);
-    // }
-
-    function alertInnerHTML(e){
-      e = e || window.event;//IE
-      alert(this.innerHTML);
-    }
-    var theTbl = document.getElementById('table');
-    for(var i=0;i<table.length;i++){
-      for(var j=0;j<table.rows[i].cells.length;j++){
-        table.rows[i].cells[j].onclick = alertInnerHTML;
-      }
-    }
-    </script>
+</div>
+</body>
 </html>
