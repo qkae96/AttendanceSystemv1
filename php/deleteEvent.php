@@ -4,11 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/AttendanceSystemv1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/AttendanceSystemv1/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="/AttendanceSystemv1/css/style.css">
+  <script src="/AttendanceSystemv1/js/jquery.min.js"></script>
+  <script src="/AttendanceSystemv1/js/bootstrap.min.js"></script>
+  <script src="/AttendanceSystemv1/js/jscript.js"></script>
   <title>Event</title>
 	<style>
 		table{
@@ -41,5 +42,42 @@
   </nav>
   <br><br><br><br>
   <p>Delete</p>
+
+  <div class="container">
+  <h2>Modal Example</h2>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Update Event</h4>
+        </div>
+        <form class="modal-body">
+          <div>
+            <label>Event Code: </label>
+            <input type="text" id="modalEventCode">
+          </div>
+          <div>
+            <label>Event Name: </label>
+            <input type="text" id="modalEventName">
+          </div>
+          <div>
+            <label>Event Date: </label>
+            <input type="Date" id="modalEventDate">
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

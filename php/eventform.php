@@ -34,7 +34,7 @@
   </nav>
   <br><br><br><br>
 
-  <form name="eventForm" id="event_form" method="post" action="addevent.php" autocomplete="on">
+  <form name="eventForm" id="event_form" method="post" action="addevent.php" onsubmit="return validateEventForm()" autocomplete="on">
 		<div class="form-group row">
 		    <label for="EventCode" class="col-sm-1">Event Code:</label>
 			    <div class="col-sm-3">
@@ -105,7 +105,7 @@
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-10">
-				<button type="submit" class="btn btn-primary" onclick="goEvent()">Save</button>
+				<button type="submit" class="btn btn-primary">Save</button>
 				<button type="button" class="btn btn-primary" onclick="goBack()">Discard</button>
 			</div>
 		</div>
