@@ -25,6 +25,28 @@ function test(){
   }
 }
 
+function confirmDeleteEvent(){
+  document.getElementById('deleteEventID').disabled = false;
+  alert("Deleted");
+}
+
+function deleteEvent(){
+  var t = document.getElementById('eventTable');
+  t.onclick = function(event){
+    event = event||window.event;
+    var target = event.target||event.srcElement;
+    while(target&&target.nodeName!='TR'){
+      target = target.parentElement;
+    }
+    var cells = target.cells;
+    if (!cells.length||target.parentNode.nodeName=='thead') {
+      return;
+    }
+    var x = document.getElementById('deleteEventID');
+    x.value = cells[0].innerHTML;
+  }
+}
+
 function saveUpdateEvent(){
   document.getElementById('modalEventID').disabled = false;
   alert("Updated");

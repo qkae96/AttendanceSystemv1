@@ -80,7 +80,7 @@
   		while($row = mysqli_fetch_array($result)) {
           ?>
           <tr>
-    		    <td><?php echo $row['EventID'] ?></td>
+    		    <td id="tableEventID"><?php echo $row['EventID'] ?></td>
             <?php
     		    echo "<td>" . $row['EventCode'] . "</td>";
     		    echo "<td>" . $row['EventName'] . "</td>";
@@ -91,7 +91,7 @@
             ?>
             <td><button class=btn-primary name=updateEvent type=button onclick="updateEvent()" data-toggle="modal" data-target="#updateEvent">Update</button></td>
             <td><button class=btn-success name=attendance type=button>Attendance</button></td>
-            <td><button class=btn-danger name=deleteEvent type=button onclick="deleteEvent.php">Delete</button></td>
+            <td><button class=btn-danger name=deleteEvent type=button onclick="deleteEvent()" data-toggle="modal" data-target="#deleteEvent">Delete</button></td>
   		    </tr>
           <?php
   			}
@@ -106,7 +106,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Update Event</h4>
         </div>
-        <form class="modal-body" id="modalUpdateEvent" method="post" action="php/updateEvent.php" onsubmit="return validateEventForm()" autocomplete="off">
+        <form class="modal-body" id="modalUpdateEvent" method="post" action="php/updateevent.php" onsubmit="return validateEventForm()" autocomplete="off">
           <div>
             <label>Event ID: </label>
             <input type="text" name="modalEventID" id="modalEventID" disabled>
@@ -140,10 +140,31 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </form>
-
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="deleteEvent" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete Event</h4>
+        </div>
+        <form class="modal-body" id="modalDeleteEvent" method="post" action="php/deleteevent.php">
+          <div hidden>
+            <label>Event ID: </label>
+            <input type="text" name="deleteEventID" id="deleteEventID" disabled>
+          </div>
+          <p>Are you sure to delete this event?</p>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-default" onclick="confirmDeleteEvent()">Yes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
+
 </body>
 </html>
