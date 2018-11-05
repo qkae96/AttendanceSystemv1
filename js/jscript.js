@@ -25,6 +25,42 @@ function test(){
   }
 }
 
+function saveUpdateEvent(){
+  document.getElementById('modalEventID').disabled = false;
+  alert("Updated");
+}
+
+function updateEvent(){
+  var t = document.getElementById('eventTable');
+  t.onclick = function(event){
+    event = event||window.event;
+    var target = event.target||event.srcElement;
+    while(target&&target.nodeName!='TR'){
+      target = target.parentElement;
+    }
+    var cells = target.cells;
+    if (!cells.length||target.parentNode.nodeName=='thead') {
+      return;
+    }
+    var x = document.getElementById('modalEventID');
+    x.value = cells[0].innerHTML;
+
+    var f = document.getElementById('modalEventCode');
+    var f1 = document.getElementById('modalEventName');
+    var f2 = document.getElementById('modalEventDate');
+    var f3 = document.getElementById('modalStartTime');
+    var f4 = document.getElementById('modalEndTime');
+    var f5 = document.getElementById('modalEventVenue');
+
+    f.value = cells[1].innerHTML;
+    f1.value = cells[2].innerHTML;
+    f2.value = cells[3].innerHTML;
+    f3.value = cells[4].innerHTML;
+    f4.value = cells[5].innerHTML;
+    f5.value = cells[6].innerHTML;
+  }
+}
+
 function addEvent(){
   window.location = "php/eventform.php";
 }

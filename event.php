@@ -57,7 +57,7 @@
   </div>
 
   <div>
-  <table class="table table-striped" id="eventTable" style="cursor: pointer;" onclick="getEventID()">
+  <table class="table table-striped" id="eventTable" style="cursor: pointer;">
     <thead>
       <tr>
         <th class="EventID">Event ID</th>
@@ -89,7 +89,7 @@
     		    echo "<td>" . $row['EventEndTime'] . "</td>";
     		    echo "<td>" . $row['EventVenue'] . "</td>";
             ?>
-            <td><button class=btn-primary name=updateEvent type=button  data-toggle="modal" data-target="#updateEvent">Update</button></td>
+            <td><button class=btn-primary name=updateEvent type=button onclick="updateEvent()" data-toggle="modal" data-target="#updateEvent">Update</button></td>
             <td><button class=btn-success name=attendance type=button>Attendance</button></td>
             <td><button class=btn-danger name=deleteEvent type=button onclick="deleteEvent.php">Delete</button></td>
   		    </tr>
@@ -106,35 +106,41 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Update Event</h4>
         </div>
-        <form class="modal-body" style="margin: auto;">
+        <form class="modal-body" id="modalUpdateEvent" method="post" action="php/updateEvent.php" onsubmit="return validateEventForm()" autocomplete="off">
+          <div>
+            <label>Event ID: </label>
+            <input type="text" name="modalEventID" id="modalEventID" disabled>
+          </div>
           <div>
             <label>Event Code: </label>
-            <input type="text" id="modalEventCode">
+            <input type="text" name="modalEventCode" id="modalEventCode">
           </div>
           <div>
             <label>Event Name: </label>
-            <input type="text" id="modalEventName">
+            <input type="text" name="modalEventName" id="modalEventName">
           </div>
           <div>
             <label>Event Date: </label>
-            <input type="Date" id="modalEventDate">
+            <input type="Date" name="modalEventDate" id="modalEventDate">
           </div>
           <div>
             <label>Event Start Time: </label>
-            <input type="time" id="modalStartTime">
+            <input type="time" name="modalStartTime" id="modalStartTime">
           </div>
           <div>
             <label>Event End Time: </label>
-            <input type="time" id="modalEndTime">
+            <input type="time" name="modalEndTime" id="modalEndTime">
           </div>
           <div>
             <label>Event Veue: </label>
-            <input type="text" id="modalEventVenue">
+            <input type="text" name="modalEventVenue" id="modalEventVenue">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-default" onclick="saveUpdateEvent()">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </form>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+
       </div>
     </div>
   </div>
