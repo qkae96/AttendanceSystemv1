@@ -89,9 +89,9 @@
     		    echo "<td>" . $row['EventEndTime'] . "</td>";
     		    echo "<td>" . $row['EventVenue'] . "</td>";
             ?>
-            <td><button class=btn-primary name=updateEvent type=button onclick="updateEvent()" data-toggle="modal" data-target="#updateEvent">Update</button></td>
-            <td><button class=btn-success name=attendance type=button>Attendance</button></td>
-            <td><button class=btn-danger name=deleteEvent type=button onclick="deleteEvent()" data-toggle="modal" data-target="#deleteEvent">Delete</button></td>
+            <td><button class=btn-primary name=updateEvent type=button onclick="updateEvent()" data-toggle="modal" data-target="#updateEvent"> Update </button></td>
+            <td><button class=btn-success name=attendance type=button onclick="getAttendance()"> Attendance </button></td>
+            <td><button class=btn-danger name=deleteEvent type=button onclick="deleteEvent()" data-toggle="modal" data-target="#deleteEvent"> Delete </button></td>
   		    </tr>
           <?php
   			}

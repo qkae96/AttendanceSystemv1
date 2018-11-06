@@ -25,6 +25,10 @@ function test(){
   }
 }
 
+function getAttendance(){
+  window.open("attendance.php");
+}
+
 function confirmDeleteEvent(){
   document.getElementById('deleteEventID').disabled = false;
   alert("Deleted");
