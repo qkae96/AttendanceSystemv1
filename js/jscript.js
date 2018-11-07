@@ -26,7 +26,31 @@ function test(){
 }
 
 function getAttendance(){
-  window.open("attendance.php");
+  let evtID = "";
+  var t = document.getElementById('eventTable');
+  t.onclick = function(event){
+    event = event||window.event;
+    var target = event.target||event.srcElement;
+    while(target&&target.nodeName!='TR'){
+      target = target.parentElement;
+    }
+    var cells = target.cells;
+    if (!cells.length||target.parentNode.nodeName=='thead') {
+      return;
+    }
+    evtID.value = cells[0].innerHTML;
+  }
+  window.open("attendance.php?evtID="+evtID);
+}
+
+function checkInput(){
+  var x = document.forms["attendanceform"]["TagID"].value;
+  if (x=="") {
+    alert("Please scan your card");
+    return false;
+  }else{
+    return true;
+  }
 }
 
 function confirmDeleteEvent(){

@@ -12,21 +12,25 @@
   <script src="js/jscript.js"></script>
   <title>Attendance</title>
   <style>
-  #eventTable{
-    width:90%;
+  #currentAttendance{
+    width:60%;
     border-collapse: collapse;
     margin: auto;
     text-align: center;
   }
 
-  th{
+  td,th{
     text-align: center;
   }
 
-  #addEventButton{
-    float: right;
+  #inputSection{
+    text-align: center;
+    align-items: center;
   }
 
+  #inputSection-cover{
+    width: auto;
+  }
   </style>
 </head>
 <body>
@@ -52,5 +56,58 @@
   </nav>
   <br><br><br><br>
 
+  <section id="inputSection">
+    <div id="inputSection-cover">
+      <div class="container">
+        <form name="attendanceform" id="attendanceform" onsubmit="return checkInput()" method="post" action="php/attendanceform.php" autocomplete="off" autofocus>
+      		<div class="form-group row">
+            <div class="col-sm-10">
+              <label for="inputEventCode">Input:</label>
+                <div>
+                  <input type="text" class="form-control" name="TagID" placeholder="Scan card" maxlength="10" autofocus>
+          		    </div>
+            </div>
+
+      		</div>
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Save</button>
+              <a href="DiscardLastAttendance.php">Discard</a>
+            </div>
+          </div>
+      	</form>
+      </div>
+    </div>
+  </section>
+
+<?php
+  $conn = connectTo();
+  $sql="SELECT attendance.AttendanceID, attendance.CheckIn, attendance.TagID, profile.Name, profile.MatricNo FROM attendance LEFT JOIN profile ON attendance.TagID = profile.TagID";
+
+  $result = mysqli_query($conn,$sql);
+  ?>
+  <table class="table table-striped" id="currentAttendance">
+  <tr>
+  <th>No</th>
+  <th>CheckIn</th>
+  <th>TagID</th>
+  <th>Name</th>
+  <th>Matric No</th>
+  </tr>
+<?php
+  while($row = mysqli_fetch_assoc($result)) {
+      echo "<tr>";
+      echo "<td>" . $row['AttendanceID'] . "</td>";
+      echo "<td>" . $row['CheckIn'] . "</td>";
+      echo "<td>" . $row['TagID'] . "</td>";
+      echo "<td>" . $row['Name'] . "</td>";
+      echo "<td>" . $row['MatricNo'] . "</td>";
+      echo "</tr>";
+  }
+  ?>
+  </table>
+<?php
+  mysqli_close($conn);
+  ?>
 </body>
 </html>
