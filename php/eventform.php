@@ -21,7 +21,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php">Attendance System v1</a>
+        <a class="navbar-brand" href="/AttendanceSystemv1/index.php">Attendance System v1</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -106,7 +106,7 @@
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-10">
-				<button type="submit" class="btn btn-primary">Save</button>
+				<button type="submit" class="btn btn-default">Save</button>
 				<button type="button" class="btn btn-primary" onclick="goBack()">Discard</button>
 			</div>
 		</div>

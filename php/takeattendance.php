@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<?php include 'php/getevent.php'; ?>
+<?php include 'getevent.php'; ?>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jscript.js"></script>
+  <link rel="stylesheet" href="/AttendanceSystemv1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/AttendanceSystemv1/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/AttendanceSystemv1/css/style.css">
+  <script src="/AttendanceSystemv1/js/jquery.min.js"></script>
+  <script src="/AttendanceSystemv1/js/bootstrap.min.js"></script>
+  <script src="/AttendanceSystemv1/js/jscript.js"></script>
   <title>Attendance</title>
   <style>
   #currentAttendance{
@@ -41,13 +41,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php">Attendance System v1</a>
+        <a class="navbar-brand" href="/AttendanceSystemv1/index.php">Attendance System v1</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="event.php">Event</a></li>
-          <li class="active"><a href="attendance.php">Attendance</a></li>
-          <li><a href="profile.php">Profile</a></li>
+          <li><a href="/AttendanceSystemv1/event.php">Event</a></li>
+          <li><a href="/AttendanceSystemv1/attendance.php">Attendance</a></li>
+          <li><a href="/AttendanceSystemv1/profile.php">Profile</a></li>
         </ul>
       </div>
     </div>
@@ -55,16 +55,16 @@
   <br><br><br><br>
   <p></p>
 
-  <div>
+  <!-- <div>
     <p>EventID: </p>
     <?php
     $inputEventCode = $_POST['attendanceEventID'];
     echo $inputEventCode;
     ?>
-  </div>
+  </div> -->
 
   <div class="container" id="inputContainer">
-    <form class="form-inline" name="attendanceform" id="attendanceform" onsubmit="return checkInput()" method="post" action="php/attendanceform.php" autocomplete="off" autofocus>
+    <form class="form-inline" name="attendanceform" id="attendanceform" onsubmit="return checkInput()" method="post" action="/AttendanceSystemv1/php/attendanceform.php" autocomplete="off" autofocus>
       <div class="form-group">
         <label for="inputLabel">Input:</label>
         <input type="text" class="form-control" name="TagID" placeholder="Scan card" maxlength="10" autofocus>

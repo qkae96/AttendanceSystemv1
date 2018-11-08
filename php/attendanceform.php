@@ -3,6 +3,7 @@ require_once('defines.php');
 // Connecting to the MySQL server
 $conn = connectTo();
 
+// $inputEventCode = $POST[""];
 $inputTagID = $_POST["TagID"];
 $sql = "INSERT INTO attendance (TagID) VALUES ('$inputTagID');";
 
@@ -13,15 +14,6 @@ if ($inputTagID == "") {
 }
 
 $conn->close();
-
-// if (count($_POST)>0) echo '<div id="form-submit-alert">Form Submitted!</div>';
-
-// function goback()
-// {
-    header("Location: {$_SERVER['HTTP_REFERER']}");
-    exit;
-// }
-
-// goback();
-
+header("Location: {$_SERVER['HTTP_REFERER']}");
+exit;
 ?>

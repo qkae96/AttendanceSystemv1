@@ -37,15 +37,15 @@ function attendanceModal(){
     if (!cells.length||target.parentNode.nodeName=='thead') {
       return;
     }
-    var x = document.getElementById('modalEventID');
+    var x = document.getElementById('attendanceEventID');
     x.value = cells[0].innerHTML;
 
-    var f = document.getElementById('modalEventCode');
-    var f1 = document.getElementById('modalEventName');
-    var f2 = document.getElementById('modalEventDate');
-    var f3 = document.getElementById('modalStartTime');
-    var f4 = document.getElementById('modalEndTime');
-    var f5 = document.getElementById('modalEventVenue');
+    var f = document.getElementById('attendanceEventCode');
+    var f1 = document.getElementById('attendanceEventName');
+    var f2 = document.getElementById('attendanceEventDate');
+    var f3 = document.getElementById('attendanceStartTime');
+    var f4 = document.getElementById('attendanceEndTime');
+    var f5 = document.getElementById('attendanceEventVenue');
 
     f.value = cells[1].innerHTML;
     f1.value = cells[2].innerHTML;
