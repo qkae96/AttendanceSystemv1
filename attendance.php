@@ -23,14 +23,21 @@
     text-align: center;
   }
 
-  #inputSection{
-    text-align: center;
-    align-items: center;
+  #inputContainer{
+    width: 60%;
+    margin: auto;
+    padding: inherit;
   }
 
-  #inputSection-cover{
+  /* #inputSection{
+    border-collapse: collapse;
+    margin: auto;
+    text-align: center;
+  } */
+
+  /* #inputSection-cover{
     width: auto;
-  }
+  } */
   </style>
 </head>
 <body>
@@ -55,30 +62,36 @@
     </div>
   </nav>
   <br><br><br><br>
+  <p></p>
 
-  <section id="inputSection">
-    <div id="inputSection-cover">
-      <div class="container">
-        <form name="attendanceform" id="attendanceform" onsubmit="return checkInput()" method="post" action="php/attendanceform.php" autocomplete="off" autofocus>
-      		<div class="form-group row">
-            <div class="col-sm-10">
-              <label for="inputEventCode">Input:</label>
-                <div>
-                  <input type="text" class="form-control" name="TagID" placeholder="Scan card" maxlength="10" autofocus>
-          		    </div>
-            </div>
-
-      		</div>
-          <div class="form-group row">
-            <div class="col-sm-10">
-              <button type="submit" class="btn btn-primary">Save</button>
-              <a href="DiscardLastAttendance.php">Discard</a>
-            </div>
-          </div>
-      	</form>
+  <div class="container" id="inputContainer">
+    <form class="form-inline" name="attendanceform" id="attendanceform" onsubmit="return checkInput()" method="post" action="php/attendanceform.php" autocomplete="off" autofocus>
+      <div class="form-group">
+        <label for="inputLabel">Input:</label>
+        <input type="text" class="form-control" name="TagID" placeholder="Scan card" maxlength="10" autofocus>
+        <button type="submit" class="btn btn-default">Save</button>
+        <button type="button" class="btn btn-danger" name="deleteEvent" onclick="deleteEvent()">Discard</button>
       </div>
-    </div>
-  </section>
+    </form>
+  </div>
+
+      <!-- <div class="container">
+        <form class="form-inline justify-content-center" name="attendanceform" id="attendanceform" onsubmit="return checkInput()" method="post" action="php/attendanceform.php" autocomplete="off" autofocus>
+      		<div class="form-group row">
+            <div>
+              <label for="inputEventCode">Input:</label>
+              <input type="text" class="form-control" name="TagID" placeholder="Scan card" maxlength="10" autofocus>
+              <div class="form-group row">
+                <div>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <a href="DiscardLastAttendance.php">Discard</a>
+                </div>
+              </div>
+            </div>
+      		</div>
+      	</form>
+      </div> -->
+  <br>
 
 <?php
   $conn = connectTo();

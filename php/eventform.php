@@ -34,27 +34,28 @@
   </nav>
   <br><br><br><br>
 
+<div class="container" id="eventFormContainer">
   <form name="eventForm" id="event_form" method="post" action="addevent.php" onsubmit="return validateEventForm()" autocomplete="on">
 		<div class="form-group row">
-		    <label for="EventCode" class="col-sm-1">Event Code:</label>
+		    <label for="EventCode" class="col-sm-2">Event Code:</label>
 			    <div class="col-sm-3">
 			      <input type="text" class="form-control" name="EventCode" placeholder="Event Code">
 			    </div>
 		 </div>
 		 <div class="form-group row">
-		    <label for="EventName" class="col-sm-1">Event Name:</label>
+		    <label for="EventName" class="col-sm-2">Event Name:</label>
 			    <div class="col-sm-3">
 			      <input type="text" class="form-control" name="EventName" placeholder="Event Name">
 			    </div>
 		 </div>
 		 <div class="form-group row">
-		 	<label for="EventDate" class="col-sm-1">Date:</label>
+		 	<label for="EventDate" class="col-sm-2">Date:</label>
 		 	<div class="col-sm-3">
 		 		<input type="Date" class="form-control" name="EventDate">
 		 	</div>
 		 </div>
 		 <div class="form-group row">
-		 	<label for="Time" class="col-sm-1">Time:</label>
+		 	<label for="Time" class="col-sm-2">Time:</label>
 		 	<div class="col-sm-2">
 		 		Start time:<input type="time" class="form-control" name="EventStartTime">
 		 	</div>
@@ -63,13 +64,13 @@
 		 	</div>
 		 </div>
 		 <div class="form-group row">
-		 	<label for="Venue" class="col-sm-1">Venue:</label>
+		 	<label for="Venue" class="col-sm-2">Venue:</label>
 		 	<div class="col-sm-3">
 		 		<input type="text" class="form-control" name="EventVenue" placeholder="Place held">
 		 	</div>
 		 </div>
 		<div class="form-group row">
-      <label for="Repetition" class="col-sm-1">Repeat Event:</label>
+      <label for="Repetition" class="col-sm-2">Repeat Event:</label>
       <input type="checkbox" class="form-check-input col-sm-1" onclick="hideRepeat()">
       <div id="Repeat" style="visibility: hidden">
         <label for="Repetition" class="col-sm-1">Repeat by:</label>
@@ -110,6 +111,7 @@
 			</div>
 		</div>
   </form>
+</div>
   <script>
   function hideRepeat(){
     var x = document.getElementById('Repeat');

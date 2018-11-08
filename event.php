@@ -90,7 +90,7 @@
     		    echo "<td>" . $row['EventVenue'] . "</td>";
             ?>
             <td><button class=btn-primary name=updateEvent type=button onclick="updateEvent()" data-toggle="modal" data-target="#updateEvent"> Update </button></td>
-            <td><button class=btn-success name=attendance type=button onclick="getAttendance()"> Attendance </button></td>
+            <td><button class=btn-success name=attendance type=button onclick="attendanceModal()" data-toggle="modal" data-target="#attendance"> Attendance </button></td>
             <td><button class=btn-danger name=deleteEvent type=button onclick="deleteEvent()" data-toggle="modal" data-target="#deleteEvent"> Delete </button></td>
   		    </tr>
           <?php
@@ -99,6 +99,8 @@
     </tbody>
   </table>
   </div>
+
+<!-- Update Modal -->
   <div class="modal fade" id="updateEvent" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -144,6 +146,7 @@
     </div>
   </div>
 
+<!-- Delete Modal -->
   <div class="modal fade" id="deleteEvent" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -166,5 +169,51 @@
     </div>
   </div>
 
+<!-- Attendance Modal -->
+<div class="modal fade" id="attendance" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Attendance</h4>
+      </div>
+      <form class="modal-body" id="modalAttendance" method="post" action="attendance.php">
+        <div hidden>
+          <label>Event ID: </label>
+          <input type="text" name="modalEventID" id="modalEventID" disable>
+        </div>
+        <div>
+          <label>Event Code: </label>
+          <input type="text" name="modalEventCode" id="modalEventCode" disabled>
+        </div>
+        <div>
+          <label>Event Name: </label>
+          <input type="text" name="modalEventName" id="modalEventName" disabled>
+        </div>
+        <div>
+          <label>Event Date: </label>
+          <input type="Date" name="modalEventDate" id="modalEventDate" disabled>
+        </div>
+        <div>
+          <label>Event Start Time: </label>
+          <input type="time" name="modalStartTime" id="modalStartTime" disabled>
+        </div>
+        <div>
+          <label>Event End Time: </label>
+          <input type="time" name="modalEndTime" id="modalEndTime" disabled>
+        </div>
+        <div>
+          <label>Event Veue: </label>
+          <input type="text" name="modalEventVenue" id="modalEventVenue" disabled>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-default" onclick="">Take Attendance</button>
+          <button type="submit" class="btn btn-default" onclick="">View Attendance</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 </body>
 </html>

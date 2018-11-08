@@ -25,8 +25,7 @@ function test(){
   }
 }
 
-function getAttendance(){
-  let evtID = "";
+function attendanceModal(){
   var t = document.getElementById('eventTable');
   t.onclick = function(event){
     event = event||window.event;
@@ -38,9 +37,23 @@ function getAttendance(){
     if (!cells.length||target.parentNode.nodeName=='thead') {
       return;
     }
-    evtID.value = cells[0].innerHTML;
+    var x = document.getElementById('modalEventID');
+    x.value = cells[0].innerHTML;
+
+    var f = document.getElementById('modalEventCode');
+    var f1 = document.getElementById('modalEventName');
+    var f2 = document.getElementById('modalEventDate');
+    var f3 = document.getElementById('modalStartTime');
+    var f4 = document.getElementById('modalEndTime');
+    var f5 = document.getElementById('modalEventVenue');
+
+    f.value = cells[1].innerHTML;
+    f1.value = cells[2].innerHTML;
+    f2.value = cells[3].innerHTML;
+    f3.value = cells[4].innerHTML;
+    f4.value = cells[5].innerHTML;
+    f5.value = cells[6].innerHTML;
   }
-  window.open("attendance.php?evtID="+evtID);
 }
 
 function checkInput(){
