@@ -13,16 +13,16 @@ function getEventID(){
   }
 }
 
-function test(){
-  var evtID;
-  var tbl = document.getElementById('eventTable');
-  if (tbl!=null) {
-    for (var i = 0; i < tbl.rows.length; i++) {
-      alert(tbl.rows[i].cells[0].innerHTML);
-      // tbl.rows[i].cells[0] = evtID;
-      // window.location = "/AttendanceSystemv1/php/update.php?evtID="+evtID;
-    }
-  }
+function takeAttendance(){
+  document.getElementById('attendanceEventID').disabled = false;
+  var x = document.forms["modalAttendance"]["attendanceEventID"].value;
+  window.location.href = "php/takeattendance.php?evtID=" + x;
+}
+
+function viewAttendance(){
+  document.getElementById('attendanceEventID').disabled = false;
+  var x = document.forms["modalAttendance"]["attendanceEventID"].value;
+  window.location.href = "php/viewattendance.php?evtID=" + x;
 }
 
 function attendanceModal(){

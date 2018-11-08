@@ -22,7 +22,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="event.php">Event</a></li>
+          <li><a href="event.php">Event</a></li>
           <li><a href="attendance.php">Attendance</a></li>
           <li><a href="profile.php">Profile</a></li>
         </ul>

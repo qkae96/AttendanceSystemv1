@@ -55,16 +55,18 @@
   <br><br><br><br>
   <p></p>
 
-  <!-- <div>
-    <p>EventID: </p>
-    <?php
-    $inputEventCode = $_POST['attendanceEventID'];
-    echo $inputEventCode;
-    ?>
-  </div> -->
+
+<?php
+  $inputEventID = $_GET['evtID'];
+  ?>
+
 
   <div class="container" id="inputContainer">
     <form class="form-inline" name="attendanceform" id="attendanceform" onsubmit="return checkInput()" method="post" action="/AttendanceSystemv1/php/attendanceform.php" autocomplete="off" autofocus>
+      <div hidden>
+        <label for="eventID">Event ID:</label>
+        <input type="text" class="form-control" name="EventID" value="<?=$inputEventID?>">
+      </div>
       <div class="form-group">
         <label for="inputLabel">Input:</label>
         <input type="text" class="form-control" name="TagID" placeholder="Scan card" maxlength="10" autofocus>

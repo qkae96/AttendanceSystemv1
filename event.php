@@ -177,7 +177,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Attendance</h4>
       </div>
-      <form class="modal-body" id="modalAttendance" method="post" action="attendance.php" autocomplete="off">
+      <form class="modal-body" id="modalAttendance" method="post" autocomplete="off">
         <div hidden>
           <label>Event ID: </label>
           <input type="text" name="attendanceEventID" id="attendanceEventID" disabled>
@@ -207,8 +207,8 @@
           <input type="text" name="attendanceEventVenue" id="attendanceEventVenue" disabled>
         </div>
         <div class="modal-footer">
-          <button type="submit" name="takeattendancebutton" class="btn btn-default" formaction="php/takeattendance.php">Take Attendance</button>
-          <button type="submit" name="viewattendancebutton" class="btn btn-default" >View Attendance</button>
+          <button type="button" name="takeattendancebutton" class="btn btn-default" onclick="takeAttendance()">Take Attendance</button>
+          <button type="button" name="viewattendancebutton" class="btn btn-default" onclick="viewAttendance()">View Attendance</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         </div>
       </form>

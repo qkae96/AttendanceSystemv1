@@ -3,9 +3,9 @@ require_once('defines.php');
 // Connecting to the MySQL server
 $conn = connectTo();
 
-// $inputEventCode = $POST[""];
+$inputEventID = $_POST["EventID"];
 $inputTagID = $_POST["TagID"];
-$sql = "INSERT INTO attendance (TagID) VALUES ('$inputTagID');";
+$sql = "INSERT INTO attendance (TagID, EventID) VALUES ('$inputTagID','$inputEventID')";
 
 if ($inputTagID == "") {
 	echo "Empty value!!! <br>";
