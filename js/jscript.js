@@ -1,15 +1,41 @@
+function viewAttendanceFromAttendance(){
+  var t = document.getElementById('attendanceTable');
+  t.onclick = function(event){
+    event = event||window.event;
+    var target = event.target||event.srcElement;
+    while(target&&target.nodeName!='TR'){
+      target = target.parentElement;
+    }
+    var cells = target.cells;
+    if (!cells.length||target.parentNode.nodeName=='thead') {
+      return;
+    }
+    var x = document.getElementById('viewAttendanceEventID');
+    x.value = cells[0].innerHTML;
+    document.getElementById('viewAttendanceEventID').disabled = false;
+    window.location.href = "php/viewattendance.php?evtID=" + x.value;
+  }
+}
 
-function getEventID(){
-  var tbl = document.getElementById('eventTable');
-  if (tbl!=null) {
-    for (var i = 0; i < tbl.rows.length; i++) {
-      // for (var j = 0; j<tbl.rows[i].cells.length; j++) {
-        tbl.rows[i].cells[0].onclick = function(){getval(this);};
-      // }
+function confirmDeleteAttendance(){
+  document.getElementById('deleteAttendanceEventID').disabled = false;
+  alert("Deleted");
+}
+
+function deleteAttendanceFromAttendance(){
+  var t = document.getElementById('attendanceTable');
+  t.onclick = function(event){
+    event = event||window.event;
+    var target = event.target||event.srcElement;
+    while(target&&target.nodeName!='TR'){
+      target = target.parentElement;
     }
-    function getval(x){
-      alert(x.innerHTML);
+    var cells = target.cells;
+    if (!cells.length||target.parentNode.nodeName=='thead') {
+      return;
     }
+    var x = document.getElementById('deleteAttendanceEventID');
+    x.value = cells[0].innerHTML;
   }
 }
 

@@ -12,7 +12,7 @@
   <script src="js/jscript.js"></script>
   <title>Attendance</title>
   <style>
-  #eventTable{
+  #attendanceTable{
     width:90%;
     border-collapse: collapse;
     margin: auto;
@@ -50,7 +50,7 @@
 
   <div>
     <p>Available Attendance</p>
-  <table class="table table-striped" id="eventTable" style="cursor: pointer;">
+  <table class="table table-striped" id="attendanceTable" style="cursor: pointer;">
     <thead>
       <tr>
         <th class="EventID">Event ID</th>
@@ -82,8 +82,8 @@
             echo "<td>" . $row['EventEndTime'] . "</td>";
             echo "<td>" . $row['EventVenue'] . "</td>";
             ?>
-            <td><button class=btn-success name=attendance type=button onclick="viewAttendance()"> View </button></td>
-            <td><button class=btn-danger name=deleteEvent type=button onclick="deleteEvent()" data-toggle="modal" data-target="#deleteEvent"> Delete </button></td>
+            <td><button class=btn-success name=attendance type=button onclick="viewAttendanceFromAttendance()"> View </button></td>
+            <td><button class=btn-danger name=deleteEvent type=button onclick="deleteAttendanceFromAttendance()" data-toggle="modal" data-target="#deleteAttendance"> Delete </button></td>
           </tr>
           <?php
         }
@@ -92,5 +92,34 @@
   </table>
   </div>
 
+  <form id="getAttendanceEventID" method="post">
+    <div hidden>
+      <label>Event ID: </label>
+      <input type="text" name="viewAttendanceEventID" id="viewAttendanceEventID" disabled>
+    </div>
+  </form>
+
+  <!-- Delete Modal -->
+    <div class="modal fade" id="deleteAttendance" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Delete Attendance</h4>
+          </div>
+          <form class="modal-body" id="modalDeleteAttendance" method="post" action="php/deleteattendance.php">
+            <div hidden>
+              <label>Event ID: </label>
+              <input type="text" name="deleteAttendanceEventID" id="deleteAttendanceEventID" disabled>
+            </div>
+            <p>Are you sure to delete this attendance?</p>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-default" onclick="confirmDeleteAttendance()">Yes</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
