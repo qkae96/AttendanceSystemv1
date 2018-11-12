@@ -17,6 +17,10 @@ function viewAttendanceFromAttendance(){
   }
 }
 
+function discardAttendance(){
+  window.location.href = "php/discardattendance.php";
+}
+
 function confirmDeleteAttendance(){
   document.getElementById('deleteAttendanceEventID').disabled = false;
   alert("Deleted");
