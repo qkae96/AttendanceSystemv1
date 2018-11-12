@@ -73,7 +73,7 @@
       <label for="Repetition" class="col-sm-2">Repeat Event:</label>
       <input type="checkbox" class="form-check-input col-sm-1" onclick="hideRepeat()">
       <div id="Repeat" style="visibility: hidden">
-        <label for="Repetition" class="col-sm-1">Repeat by:</label>
+        <label for="Repetition" class="col-sm-1">Repeat:</label>
         <div class="col-sm-1">
   				<select type="text" class="custom-select" required name="RepeatEvent">
   					<option>None</option>

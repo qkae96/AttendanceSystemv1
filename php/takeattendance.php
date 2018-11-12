@@ -65,13 +65,13 @@
     <form class="form-inline" name="attendanceform" id="attendanceform" onsubmit="return checkInput()" method="post" action="/AttendanceSystemv1/php/attendanceform.php" autocomplete="off" autofocus>
       <div hidden>
         <label for="eventID">Event ID:</label>
-        <input type="text" class="form-control" name="EventID" value="<?=$inputEventID?>">
+        <input type="text" class="form-control" id="EventID" name="EventID" value="<?=$inputEventID?>">
       </div>
       <div class="form-group">
         <label for="inputLabel">Input:</label>
         <input type="text" class="form-control" name="TagID" placeholder="Scan card" maxlength="10" autofocus>
         <button type="submit" class="btn btn-default">Save</button>
-        <button type="button" class="btn btn-danger" name="discardAttendance" formaction="/AttendanceSystemv1/php/discardattendance.php" method="post">Discard</button>
+        <button type="button" class="btn btn-danger" onclick="discardAttendance()">Discard</button>
       </div>
     </form>
   </div>

@@ -18,7 +18,8 @@ function viewAttendanceFromAttendance(){
 }
 
 function discardAttendance(){
-  window.location.href = "php/discardattendance.php";
+  var x = document.forms["attendanceform"]["EventID"].value;
+  window.location.href = "discardattendance.php?evtID=" + x;
 }
 
 function confirmDeleteAttendance(){
