@@ -22,6 +22,14 @@
   th,p{
     text-align: center;
   }
+
+  #footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
   </style>
 </head>
 <body>
@@ -121,5 +129,13 @@
         </div>
       </div>
     </div>
+
+    <footer id="page-footer">
+      <div id="footer">
+        <div class="footer-bootom">
+          <p>Copyright &copy; 2018 - Web Attendance System <a href="https://um.edu.my">University Malaya</a>. Designed by: <a href="https://www.linkedin.com/in/teowqinkae/">TQK</a> and <a href="https://www.linkedin.com/in/zhiyuteoh/"> TZY</p>
+        </div>
+      </div>
+    </footer>
 </body>
 </html>

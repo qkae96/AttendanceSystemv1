@@ -40,6 +40,14 @@
     min-width: 1em;
     margin-right: 0.5em;
   }
+
+  #footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
   </style>
 </head>
 <body>
@@ -74,7 +82,7 @@
     <thead>
       <tr>
         <th class="No">No</th>
-        <th class="EventID">Event ID</th>
+        <th class="EventID" hidden>Event ID</th>
         <th class="EventCode">Event Code</th>
         <th class="EventName">Event Name</th>
         <th class="EventDate">Event Date</th>
@@ -95,7 +103,7 @@
           ?>
           <tr>
             <td></td>
-    		    <td id="tableEventID"><?php echo $row['EventID'] ?></td>
+    		    <td id="tableEventID" hidden><?php echo $row['EventID'] ?></td>
             <?php
     		    echo "<td>" . $row['EventCode'] . "</td>";
     		    echo "<td>" . $row['EventName'] . "</td>";
@@ -230,5 +238,13 @@
     </div>
   </div>
 </div>
+
+<footer id="page-footer">
+  <div id="footer">
+    <div class="footer-bootom">
+      <p>Copyright &copy; 2018 - Web Attendance System <a href="https://um.edu.my">University Malaya</a>. Designed by: <a href="https://www.linkedin.com/in/teowqinkae/">TQK</a> and <a href="https://www.linkedin.com/in/zhiyuteoh/"> TZY</p>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

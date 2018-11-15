@@ -11,7 +11,7 @@ function connectTo(){
 
 function sqlReady($input){
 	$conn = connectTo();
-	$string = mysqi_real_escape_string($conn, $input);
+	$string = mysqli_real_escape_string($conn, $input);
 	$conn->close();
 	return $string;
 }

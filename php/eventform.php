@@ -10,6 +10,15 @@
   <script src="/AttendanceSystemv1/js/bootstrap.min.js"></script>
   <script src="/AttendanceSystemv1/js/jscript.js"></script>
   <title>Add New Event</title>
+  <style>
+  #footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+</style>
 </head>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -115,6 +124,15 @@
 		</div>
   </form>
 </div>
+
+<footer id="page-footer">
+  <div id="footer">
+    <div class="footer-bootom">
+      <p>Copyright &copy; 2018 - Web Attendance System <a href="https://um.edu.my">University Malaya</a>. Designed by: <a href="https://www.linkedin.com/in/teowqinkae/">TQK</a> and <a href="https://www.linkedin.com/in/zhiyuteoh/"> TZY</p>
+    </div>
+  </div>
+</footer>
+
   <script>
   let dropdown = document.getElementById('json-dropdown');
   dropdown.length = 0;
