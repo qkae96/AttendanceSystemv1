@@ -27,6 +27,19 @@
     float: right;
   }
 
+  table{
+    counter-reset: rowNumber;
+  }
+
+  table tr > td:first-child{
+    counter-increment: rowNumber;
+  }
+
+  table tr td:first-child::before{
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+  }
   </style>
 </head>
 <body>
@@ -60,6 +73,7 @@
   <table class="table table-striped" id="eventTable" style="cursor: pointer;">
     <thead>
       <tr>
+        <th class="No">No</th>
         <th class="EventID">Event ID</th>
         <th class="EventCode">Event Code</th>
         <th class="EventName">Event Name</th>
@@ -80,6 +94,7 @@
   		while($row = mysqli_fetch_array($result)) {
           ?>
           <tr>
+            <td></td>
     		    <td id="tableEventID"><?php echo $row['EventID'] ?></td>
             <?php
     		    echo "<td>" . $row['EventCode'] . "</td>";
@@ -109,7 +124,7 @@
           <h4 class="modal-title">Update Event</h4>
         </div>
         <form class="modal-body" id="modalUpdateEvent" method="post" action="php/updateevent.php" onsubmit="return validateEventForm()" autocomplete="off">
-          <div>
+          <div hidden>
             <label>Event ID: </label>
             <input type="text" name="modalEventID" id="modalEventID" disabled>
           </div>

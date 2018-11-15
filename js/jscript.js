@@ -69,7 +69,7 @@ function attendanceModal(){
       return;
     }
     var x = document.getElementById('attendanceEventID');
-    x.value = cells[0].innerHTML;
+    x.value = cells[1].innerHTML;
 
     var f = document.getElementById('attendanceEventCode');
     var f1 = document.getElementById('attendanceEventName');
@@ -78,12 +78,12 @@ function attendanceModal(){
     var f4 = document.getElementById('attendanceEndTime');
     var f5 = document.getElementById('attendanceEventVenue');
 
-    f.value = cells[1].innerHTML;
-    f1.value = cells[2].innerHTML;
-    f2.value = cells[3].innerHTML;
-    f3.value = cells[4].innerHTML;
-    f4.value = cells[5].innerHTML;
-    f5.value = cells[6].innerHTML;
+    f.value = cells[2].innerHTML;
+    f1.value = cells[3].innerHTML;
+    f2.value = cells[4].innerHTML;
+    f3.value = cells[5].innerHTML;
+    f4.value = cells[6].innerHTML;
+    f5.value = cells[7].innerHTML;
   }
 }
 
@@ -115,7 +115,7 @@ function deleteEvent(){
       return;
     }
     var x = document.getElementById('deleteEventID');
-    x.value = cells[0].innerHTML;
+    x.value = cells[1].innerHTML;
   }
 }
 
@@ -137,7 +137,7 @@ function updateEvent(){
       return;
     }
     var x = document.getElementById('modalEventID');
-    x.value = cells[0].innerHTML;
+    x.value = cells[1].innerHTML;
 
     var f = document.getElementById('modalEventCode');
     var f1 = document.getElementById('modalEventName');
@@ -146,12 +146,12 @@ function updateEvent(){
     var f4 = document.getElementById('modalEndTime');
     var f5 = document.getElementById('modalEventVenue');
 
-    f.value = cells[1].innerHTML;
-    f1.value = cells[2].innerHTML;
-    f2.value = cells[3].innerHTML;
-    f3.value = cells[4].innerHTML;
-    f4.value = cells[5].innerHTML;
-    f5.value = cells[6].innerHTML;
+    f.value = cells[2].innerHTML;
+    f1.value = cells[3].innerHTML;
+    f2.value = cells[4].innerHTML;
+    f3.value = cells[5].innerHTML;
+    f4.value = cells[6].innerHTML;
+    f5.value = cells[7].innerHTML;
   }
 }
 

@@ -29,6 +29,20 @@
     padding: inherit;
   }
 
+  table{
+    counter-reset: rowNumber;
+  }
+
+  table tr > td:first-child{
+    counter-increment: rowNumber;
+  }
+
+  table tr td:first-child::before{
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+  }
+
   </style>
 </head>
 <body>
@@ -87,6 +101,7 @@
   <table class="table table-striped" id="currentAttendance">
   <tr>
   <th>No</th>
+  <th hidden>AttendanceID</th>
   <th>CheckIn</th>
   <th>TagID</th>
   <th>Name</th>
@@ -95,7 +110,10 @@
 <?php
   while($row = mysqli_fetch_assoc($result)) {
       echo "<tr>";
-      echo "<td>" . $row['AttendanceID'] . "</td>";
+      ?>
+      <td></td>
+      <?php
+      echo "<td hidden>" . $row['AttendanceID'] . "</td>";
       echo "<td>" . $row['CheckIn'] . "</td>";
       echo "<td>" . $row['TagID'] . "</td>";
       echo "<td>" . $row['Name'] . "</td>";
@@ -107,5 +125,6 @@
 <?php
   mysqli_close($conn);
   ?>
+
 </body>
 </html>
