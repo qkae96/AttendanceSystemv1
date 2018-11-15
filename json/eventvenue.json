@@ -1,0 +1,16 @@
+[
+  {"name":"MM1", "capacity":30},
+  {"name":"MM2", "capacity":30},
+  {"name":"MM3", "capacity":30},
+  {"name":"MM4", "capacity":30},
+  {"name":"MM5", "capacity":30},
+  {"name":"MM6", "capacity":30},
+  {"name":"BT1", "capacity":30},
+  {"name":"BT2", "capacity":30},
+  {"name":"BT3", "capacity":30},
+  {"name":"BT4", "capacity":30},
+  {"name":"ML", "capacity":30},
+  {"name":"DK1", "capacity":30},
+  {"name":"DK2", "capacity":30},
+  {"name":"BK", "capacity":30}
+]

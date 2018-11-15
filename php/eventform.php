@@ -66,7 +66,10 @@
 		 <div class="form-group row">
 		 	<label for="Venue" class="col-sm-2">Venue:</label>
 		 	<div class="col-sm-3">
-		 		<input type="text" class="form-control" name="EventVenue" placeholder="Place held">
+		 		<!-- <input type="text" class="form-control" name="EventVenue" id="EventVenue" placeholder="Place held" onkeyup="suggestVenue()"> -->
+        <select id="json-dropdown" name="EventVenue">
+          <option></option><p><p>
+        </select>
 		 	</div>
 		 </div>
 		<div class="form-group row">
@@ -113,6 +116,34 @@
   </form>
 </div>
   <script>
+  let dropdown = document.getElementById('json-dropdown');
+  dropdown.length = 0;
+  let defaultOption = document.createElement('option');
+  defaultOption.text = 'Please select';
+  dropdown.add(defaultOption);
+  dropdown.selectedIndex = 0;
+  const url = '/AttendanceSystemv1/json/eventvenue.json';
+  const request = new XMLHttpRequest();
+  request.open('GET', url, true);
+  request.onload = function(){
+    if (request.status===200) {
+      const data = JSON.parse(request.responseText);
+      let option;
+      for (let i = 0; i < data.length; i++) {
+        option = document.createElement('option');
+        option.text = data[i].name +' -- Capacity = '+data[i].capacity;
+        option.value = data[i].name;
+        dropdown.add(option);
+      }
+    }else {
+      console.log("error");
+    }
+  }
+  request.onerror = function(){
+    console.console.error('An error occurred fetching the json from '+url);
+  };
+  request.send();
+
   function hideRepeat(){
     var x = document.getElementById('Repeat');
     if (x.style.visibility==="hidden") {
