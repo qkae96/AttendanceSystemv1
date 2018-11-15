@@ -137,7 +137,7 @@
   <table class="table table-striped" id="currentAttendance">
   <tr>
   <th>No</th>
-  <th>AttendanceID</th>
+  <th hidden>AttendanceID</th>
   <th>CheckIn</th>
   <th>TagID</th>
   <th>Name</th>
@@ -148,7 +148,7 @@
       echo "<tr>";?>
         <td></td>
         <?php
-      echo "<td>" . $row['AttendanceID'] . "</td>";
+      echo "<td hidden>" . $row['AttendanceID'] . "</td>";
       echo "<td>" . $row['CheckIn'] . "</td>";
       echo "<td>" . $row['TagID'] . "</td>";
       echo "<td>" . $row['Name'] . "</td>";
