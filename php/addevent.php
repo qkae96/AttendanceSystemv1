@@ -15,23 +15,38 @@ $EndRepeat = $_POST["EndRepeat"];
 $EventClockOut = $_POST["EventClockOut"];
 $EventDescription = $_POST["EventDescription"];
 
-// $checksql = mysqli_query("SELECT * FROM event WHERE EventCode = $EventCode AND EventName = $EventName AND EventDate = $EventDate AND EventStartTime = $StartTime AND EventEndTime = $EndTime AND EventVenue = $Venue");
-//
-// $count = mysqli_num_rows($checksql);
-// if ($count==0) {
-//   $sql = mysqli_query("INSERT INTO event(EventCode, EventName, EventDate, EventStartTime, EventEndTime, EventVenue, RepeatEvent, EndRepeat, EventClockOut, EventDescription) VALUES ('$EventCode', '$EventName', '$EventDate', '$StartTime', '$EndTime', '$Venue', '$RepeatEvent', '$EndRepeat', '$EventClockOut', '$EventDescription')") or die(mysqli_error());
-// }else {
-//   echo "The record already exists.";
-// }
+// Find duplicate
+$checkduplicate = "SELECT * FROM event WHERE EventCode = '$EventCode' AND EventName = '$EventName' AND EventDate = '$EventDate' AND EventStartTime = '$StartTime' AND EventEndTime = '$EndTime' AND EventVenue = '$Venue'";
 
-$sql = "INSERT INTO event(EventCode, EventName, EventDate, EventStartTime, EventEndTime, EventVenue, RepeatEvent, EndRepeat, EventClockOut, EventDescription) VALUES ('$EventCode', '$EventName', '$EventDate', '$StartTime', '$EndTime', '$Venue', '$RepeatEvent', '$EndRepeat', '$EventClockOut', '$EventDescription')";
+$duplicatequery = mysqli_query($conn,$checkduplicate);
 
-
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+$count = mysqli_num_rows($duplicatequery);
+if ($count>0) {
+  echo "<script>
+          alert('The record already exists.');
+          window.location.href = '/AttendanceSystemv1/event.php';
+        </script>";
+  return false;
+}else {
+  $sql = "INSERT INTO event(EventCode, EventName, EventDate, EventStartTime, EventEndTime, EventVenue, RepeatEvent, EndRepeat, EventClockOut, EventDescription) VALUES ('$EventCode', '$EventName', '$EventDate', '$StartTime', '$EndTime', '$Venue', '$RepeatEvent', '$EndRepeat', '$EventClockOut', '$EventDescription')";
+  if ($conn->query($sql) === TRUE) {
+      echo "<script>
+              alert('New record created successfully.');
+              window.location.href = '/AttendanceSystemv1/event.php';
+            </script>";
+  } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+  }
 }
+
+// $sql = "INSERT INTO event(EventCode, EventName, EventDate, EventStartTime, EventEndTime, EventVenue, RepeatEvent, EndRepeat, EventClockOut, EventDescription) VALUES ('$EventCode', '$EventName', '$EventDate', '$StartTime', '$EndTime', '$Venue', '$RepeatEvent', '$EndRepeat', '$EventClockOut', '$EventDescription')";
+//
+//
+// if ($conn->query($sql) === TRUE) {
+//     echo "New record created successfully";
+// } else {
+//     echo "Error: " . $sql . "<br>" . $conn->error;
+// }
 $conn->close();
 header('Location: ' . $_SERVER["HTTP_REFERER"] );
 exit;

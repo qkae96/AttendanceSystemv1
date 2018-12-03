@@ -72,6 +72,9 @@
 
 <?php
   $inputEventID = $_GET['evtID'];
+  $startTime = $_GET['startTime'];
+  $endTime = $_GET['endTime'];
+  $date = $_GET['date'];
   ?>
 
 
@@ -80,6 +83,12 @@
       <div hidden>
         <label for="eventID">Event ID:</label>
         <input type="text" class="form-control" id="EventID" name="EventID" value="<?=$inputEventID?>">
+        <label for="startTime">Event Start Time:</label>
+        <input type="time" class="form-control" id="startTime" name="startTime" value="<?=$startTime?>">
+        <label for="endTime">Event End Time:</label>
+        <input type="time" class="form-control" id="endTime" name="endTime" value="<?=$endTime?>">
+        <label for="date">Event Date:</label>
+        <input type="date" class="form-control" id="date" name="date" value="<?=$date?>">
       </div>
       <div class="form-group">
         <label for="inputLabel">Input:</label>

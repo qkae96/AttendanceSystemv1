@@ -48,7 +48,10 @@ function deleteAttendanceFromAttendance(){
 function takeAttendance(){
   document.getElementById('attendanceEventID').disabled = false;
   var x = document.forms["modalAttendance"]["attendanceEventID"].value;
-  window.location.href = "php/takeattendance.php?evtID=" + x;
+  var y = document.forms["modalAttendance"]["attendanceStartTime"].value;
+  var z = document.forms["modalAttendance"]["attendanceEndTime"].value;
+  var date = document.forms["modalAttendance"]["attendanceEventDate"].value;
+  window.location.href = "php/takeattendance.php?evtID="+x+"&startTime="+y+"&endTime="+z+"&date="+date;
 }
 
 function viewAttendance(){
@@ -192,7 +195,6 @@ function validateEventForm(){
     return false;
   }
   else {
-    alert("Saved");
     return true;
   }
 }
