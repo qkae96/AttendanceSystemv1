@@ -39,14 +39,7 @@ if ($count>0) {
   }
 }
 
-// $sql = "INSERT INTO event(EventCode, EventName, EventDate, EventStartTime, EventEndTime, EventVenue, RepeatEvent, EndRepeat, EventClockOut, EventDescription) VALUES ('$EventCode', '$EventName', '$EventDate', '$StartTime', '$EndTime', '$Venue', '$RepeatEvent', '$EndRepeat', '$EventClockOut', '$EventDescription')";
-//
-//
-// if ($conn->query($sql) === TRUE) {
-//     echo "New record created successfully";
-// } else {
-//     echo "Error: " . $sql . "<br>" . $conn->error;
-// }
+
 $conn->close();
 header("Location: http://localhost/AttendanceSystemv1/event.php");
 exit;

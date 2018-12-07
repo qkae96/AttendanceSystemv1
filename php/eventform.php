@@ -122,8 +122,6 @@
 				<button type="button" class="btn btn-primary" onclick="goBack()">Discard</button>
 			</div>
 		</div>
-  </form>
-</div>
 
 <footer id="page-footer">
   <div id="footer">

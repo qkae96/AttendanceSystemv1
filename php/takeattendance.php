@@ -92,7 +92,7 @@
       </div>
       <div class="form-group">
         <label for="inputLabel">Input:</label>
-        <input type="text" class="form-control" name="TagID" placeholder="Scan card" maxlength="10" autofocus>
+        <input type="text" class="form-control" name="TagID" id="tagID" placeholder="Scan card" maxlength="10" autofocus>
         <button type="submit" class="btn btn-default">Save</button>
         <button type="button" class="btn btn-danger" onclick="discardAttendance()">Discard</button>
       </div>

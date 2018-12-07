@@ -1,4 +1,8 @@
 
+function addStudent(){
+    document.getElementById('modalEventID').disabled = false;
+}
+
 function viewAttendanceFromAttendance(){
   var t = document.getElementById('attendanceTable');
   t.onclick = function(event){

@@ -134,7 +134,7 @@
         <form class="modal-body" id="modalUpdateEvent" method="post" action="php/updateevent.php" onsubmit="return validateEventForm()" autocomplete="off">
           <div hidden>
             <label>Event ID: </label>
-            <input type="text" name="modalEventID" id="modalEventID" disabled>
+            <input type="text" name="modalEventID" id="modalEventID">
           </div>
           <div>
             <label>Event Code: </label>
@@ -161,6 +161,7 @@
             <input type="text" name="modalEventVenue" id="modalEventVenue">
           </div>
           <div class="modal-footer">
+            <button type="submit" class="btn btn-info" formaction="php/addstudentform.php">Add Students</button>
             <button type="submit" class="btn btn-default" onclick="saveUpdateEvent()">Save</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
