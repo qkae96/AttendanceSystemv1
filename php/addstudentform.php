@@ -25,7 +25,7 @@
 
   #studentList{
     counter-reset: rowNumber;
-    width: 50%;
+    width: auto;
     border-collapse: collapse;
     margin: auto;
     text-align: center;
@@ -132,50 +132,53 @@
       </div>
       <div class="form-group" id="livesearch">
         <label for="inputLabel">Name:</label>
-        <input type="text" class="form-control" name="TagID" id="tagID" placeholder="Search here" onkeyup="showResult(this.value)" autofocus>
-        <button type="submit" class="btn btn-default">Add</button>
+        <input type="text" class="form-control" name="TagID" id="searchinput" placeholder="Search here" onkeyup="showResult()" autofocus>
+        <button type="submit" class="btn btn-default">Save</button>
         <button type="button" class="btn btn-danger" onclick="discardAttendance()">Cancel</button>
+      </div>
+      <br><br>
+      <div class="form-group" id="studenttable">
+        <?php
+          $conn = connectTo();
+          $sql="SELECT * FROM profile WHERE ProfileType = 'user'";
+
+          $result = mysqli_query($conn,$sql);
+          ?>
+          <table class="table table-striped" id="studentList">
+          <tr>
+          <th>No</th>
+          <th>TagID</th>
+          <th>Name</th>
+          <th>Matric No</th>
+          <th class="Action" colspan="1">Action</th>
+          </tr>
+        <?php
+          while($row = mysqli_fetch_assoc($result)) {
+              echo "<tr>";
+              ?>
+              <td></td>
+              <?php
+              echo "<td>" . $row['TagID'] . "</td>";
+              echo "<td>" . $row['Name'] . "</td>";
+              echo "<td>" . $row['MatricNo'] . "</td>";
+              ?>
+              <td><button class=btn-success name=addStudent type=button onclick="addStudent()" data-toggle="modal" data-target="#addStudent"><span class="glyphicon glyphicon-plus"></span></button></td>
+              <td><button class=btn-danger name=removeStudent type=button onclick="removeStudent()" data-toggle="modal" data-target="#removeStudent"><span class="glyphicon glyphicon-remove"></span></button></td>
+              <?php
+              echo "</tr>";
+          }
+          ?>
+          </table>
+        <?php
+          mysqli_close($conn);
+          ?>
       </div>
     </form>
   </div>
 
   <br>
 
-  <?php
-    $conn = connectTo();
-    $sql="SELECT attendance.AttendanceID, attendance.CheckIn, attendance.TagID, profile.Name, profile.MatricNo FROM attendance LEFT JOIN profile ON attendance.TagID = profile.TagID WHERE attendance.EventID = $EventID";
 
-    $result = mysqli_query($conn,$sql);
-    ?>
-    <table class="table table-striped" id="studentList">
-    <tr>
-    <th>No</th>
-    <th hidden>AttendanceID</th>
-    <th>TagID</th>
-    <th>Name</th>
-    <th>Matric No</th>
-    <th class="Action" colspan="1">Action</th>
-    </tr>
-  <?php
-    while($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>";
-        ?>
-        <td></td>
-        <?php
-        echo "<td hidden>" . $row['AttendanceID'] . "</td>";
-        echo "<td>" . $row['TagID'] . "</td>";
-        echo "<td>" . $row['Name'] . "</td>";
-        echo "<td>" . $row['MatricNo'] . "</td>";
-        echo "</tr>";
-        ?>
-        <td><button class=btn-danger name=deleteStudent type=button onclick="deleteStudent()" data-toggle="modal" data-target="#deleteStudent"> Delete </button></td>
-        <?php
-    }
-    ?>
-    </table>
-  <?php
-    mysqli_close($conn);
-    ?>
 
 <footer id="page-footer">
   <div id="footer">
@@ -186,27 +189,48 @@
 </footer>
 
   <script>
-  function showResult(str) {
-    if (str.length==0) {
-      document.getElementById("livesearch").innerHTML="";
-      document.getElementById("livesearch").style.border="0px";
-      return;
-    }
-    if (window.XMLHttpRequest) {
-      // code for IE7+, Firefox, Chrome, Opera, Safari
-      xmlhttp=new XMLHttpRequest();
-    } else {  // code for IE6, IE5
-      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange=function() {
-      if (this.readyState==4 && this.status==200) {
-        document.getElementById("livesearch").innerHTML=this.responseText;
-        document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+  function showResult() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchinput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("studenttable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
       }
     }
-    xmlhttp.open("GET","livesearch.php?q="+str,true);
-    xmlhttp.send();
   }
+}
+  // function showResult(str) {
+  //   if (str.length==0) {
+  //     document.getElementById("livesearch").innerHTML="";
+  //     document.getElementById("livesearch").style.border="0px";
+  //     return;
+  //   }
+  //   if (window.XMLHttpRequest) {
+  //     // code for IE7+, Firefox, Chrome, Opera, Safari
+  //     xmlhttp=new XMLHttpRequest();
+  //   } else {  // code for IE6, IE5
+  //     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  //   }
+  //   xmlhttp.onreadystatechange=function() {
+  //     if (this.readyState==4 && this.status==200) {
+  //       document.getElementById("livesearch").innerHTML=this.responseText;
+  //       document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+  //     }
+  //   }
+  //   xmlhttp.open("GET","livesearch.php?q="+str,true);
+  //   xmlhttp.send();
+  // }
   </script>
 </body>
 </html>
