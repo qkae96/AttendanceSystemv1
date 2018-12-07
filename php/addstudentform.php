@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   <link rel="stylesheet" href="/AttendanceSystemv1/css/bootstrap.min.css">
   <link rel="stylesheet" href="/AttendanceSystemv1/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="/AttendanceSystemv1/css/style.css">
@@ -23,12 +24,34 @@
     text-align: center;
   }
 
+  #studenttable{
+    margin-left: 10%;
+  }
+
   #studentList{
     counter-reset: rowNumber;
-    width: auto;
+    width: 50%;
     border-collapse: collapse;
     margin: auto;
     text-align: center;
+    table-layout: fixed;
+    float: left;
+  }
+  #studentListAdded{
+    counter-reset: rowNumber;
+    width: 50%;
+    border-collapse: collapse;
+    margin: auto;
+    text-align: center;
+    table-layout: fixed;
+    float: right;
+  }
+
+  #studentList, #studentListAdded tbody{
+    width: auto;
+    display: block;
+    overflow: auto;
+    height: auto;
   }
 
   #studentList tr > td:first-child{
@@ -40,12 +63,24 @@
     min-width: 1em;
     margin-right: 0.5em;
   }
+
+  #studentListAdded tr > td:first-child{
+    counter-increment: rowNumber;
+  }
+
+  #studentListAdded tr td:first-child::before{
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+  }
+
   #footer{
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     text-align: center;
+    background: #D3D3D3;
   }
 </style>
 </head>
@@ -73,7 +108,7 @@
   <br><br><br><br>
 
   <?php
-  $EventID = $_POST["modalEventID"];
+  $EventID = $_GET["modalEventID"];
    ?>
 
   <div>
@@ -118,11 +153,11 @@
 
   <br>
 
-  <div class="container" id="inputContainer">
-    <form class="form-inline" name="attendanceform" id="addStudentForm" onsubmit="return checkInput()" method="post" action="/AttendanceSystemv1/php/addstudent.php" autocomplete="off" autofocus>
+  <div class="container" id="searchContainer">
+    <form class="form-inline" name="studentListSearch" id="addStudentForm" onsubmit="return checkSearch()" autocomplete="off" autofocus>
       <div hidden>
         <label for="eventID">Event ID:</label>
-        <input type="text" class="form-control" id="EventID" name="EventID" value="<?=$inputEventID?>">
+        <input type="text" class="form-control" id="EventID" name="EventID" value="<?=$EventID?>">
         <label for="startTime">Event Start Time:</label>
         <input type="time" class="form-control" id="startTime" name="startTime" value="<?=$startTime?>">
         <label for="endTime">Event End Time:</label>
@@ -130,67 +165,99 @@
         <label for="date">Event Date:</label>
         <input type="date" class="form-control" id="date" name="date" value="<?=$date?>">
       </div>
-      <div class="form-group" id="livesearch">
+      <div class="form-group">
         <label for="inputLabel">Name:</label>
-        <input type="text" class="form-control" name="TagID" id="searchinput" placeholder="Search here" onkeyup="showResult()" autofocus>
-        <button type="submit" class="btn btn-default">Save</button>
-        <button type="button" class="btn btn-danger" onclick="discardAttendance()">Cancel</button>
-      </div>
-      <br><br>
-      <div class="form-group" id="studenttable">
-        <?php
-          $conn = connectTo();
-          $sql="SELECT * FROM profile WHERE ProfileType = 'user'";
-
-          $result = mysqli_query($conn,$sql);
-          ?>
-          <table class="table table-striped" id="studentList">
-          <tr>
-          <th>No</th>
-          <th>TagID</th>
-          <th>Name</th>
-          <th>Matric No</th>
-          <th class="Action" colspan="1">Action</th>
-          </tr>
-        <?php
-          while($row = mysqli_fetch_assoc($result)) {
-              echo "<tr>";
-              ?>
-              <td></td>
-              <?php
-              echo "<td>" . $row['TagID'] . "</td>";
-              echo "<td>" . $row['Name'] . "</td>";
-              echo "<td>" . $row['MatricNo'] . "</td>";
-              ?>
-              <td><button class=btn-success name=addStudent type=button onclick="addStudent()" data-toggle="modal" data-target="#addStudent"><span class="glyphicon glyphicon-plus"></span></button></td>
-              <td><button class=btn-danger name=removeStudent type=button onclick="removeStudent()" data-toggle="modal" data-target="#removeStudent"><span class="glyphicon glyphicon-remove"></span></button></td>
-              <?php
-              echo "</tr>";
-          }
-          ?>
-          </table>
-        <?php
-          mysqli_close($conn);
-          ?>
+        <input type="text" class="form-control" name="name" id="searchinput" placeholder="Search here" onkeyup="showResult()" autofocus>
+        <button type="button" class="btn btn-default" onclick="goToEvent()">Save</button>
+        <button type="button" class="btn btn-danger" onclick="discardStudentList()">Cancel</button>
       </div>
     </form>
   </div>
 
-  <br>
+  <br><br>
+
+  <div class="form-group" id="studenttable">
+    <?php
+      $conn = connectTo();
+      $sql="SELECT * FROM profile WHERE ProfileType = 'user'";
+
+      $result = mysqli_query($conn,$sql);
+      ?>
+      <table class="table table-striped" id="studentList">
+      <tr>
+      <th>No</th>
+      <th>TagID</th>
+      <th>Name</th>
+      <th>Matric No</th>
+      <th class="Action" colspan="2">Action</th>
+      </tr>
+    <?php
+      while($row = mysqli_fetch_assoc($result)) {
+          echo "<tr>";
+          ?>
+          <td></td>
+          <?php
+          echo "<td>" . $row['TagID'] . "</td>";
+          echo "<td>" . $row['Name'] . "</td>";
+          echo "<td>" . $row['MatricNo'] . "</td>";
+          ?>
+          <td><button class="btn-success" name="addStudent" type="button" onclick="addStudent()"><span class="glyphicon glyphicon-plus"></span></button></td>
+          <td><button class=btn-danger name=removeStudent type=button onclick="removeStudent()" data-toggle="modal" data-target="#removeStudent"><span class="glyphicon glyphicon-remove"></span></button></td>
+          <?php
+          echo "</tr>";
+      }
+      ?>
+      </table>
+    <?php
+      mysqli_close($conn);
+      ?>
+  </div>
+
+  <div class="form-group" id="studenttableadded">
+    <?php
+      $conn = connectTo();
+      $sql="SELECT attendance.AttendanceID, attendance.CheckIn, attendance.TagID, profile.Name, profile.MatricNo FROM attendance LEFT JOIN profile ON attendance.TagID = profile.TagID WHERE attendance.EventID = $EventID";
+
+      $result = mysqli_query($conn,$sql);
+      ?>
+      <table class="table table-striped" id="studentListAdded">
+      <tr>
+      <th>No</th>
+      <th>TagID</th>
+      <th>Name</th>
+      <th>Matric No</th>
+      </tr>
+    <?php
+      while($row = mysqli_fetch_assoc($result)) {
+          echo "<tr>";
+          ?>
+          <td></td>
+          <?php
+          echo "<td>" . $row['TagID'] . "</td>";
+          echo "<td>" . $row['Name'] . "</td>";
+          echo "<td>" . $row['MatricNo'] . "</td>";
+          echo "</tr>";
+      }
+      ?>
+      </table>
+    <?php
+      mysqli_close($conn);
+      ?>
+  </div>
 
 
 
 <footer id="page-footer">
   <div id="footer">
     <div class="footer-bootom">
-      <p>Copyright &copy; 2018 - Web Attendance System <a href="https://um.edu.my">University Malaya</a>. Designed by: <a href="https://www.linkedin.com/in/teowqinkae/">TQK</a> and <a href="https://www.linkedin.com/in/zhiyuteoh/"> TZY</p>
+      <!-- <p>Copyright &copy; 2018 - Web Attendance System <a href="https://um.edu.my">University Malaya</a>. Designed by: <a href="https://www.linkedin.com/in/teowqinkae/">TQK</a> and <a href="https://www.linkedin.com/in/zhiyuteoh/"> TZY</a></p> -->
     </div>
   </div>
 </footer>
 
   <script>
-  function showResult() {
-  // Declare variables
+function showResult() {
+// Declare variables
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("searchinput");
   filter = input.value.toUpperCase();
@@ -210,27 +277,45 @@
     }
   }
 }
-  // function showResult(str) {
-  //   if (str.length==0) {
-  //     document.getElementById("livesearch").innerHTML="";
-  //     document.getElementById("livesearch").style.border="0px";
-  //     return;
-  //   }
-  //   if (window.XMLHttpRequest) {
-  //     // code for IE7+, Firefox, Chrome, Opera, Safari
-  //     xmlhttp=new XMLHttpRequest();
-  //   } else {  // code for IE6, IE5
-  //     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  //   }
-  //   xmlhttp.onreadystatechange=function() {
-  //     if (this.readyState==4 && this.status==200) {
-  //       document.getElementById("livesearch").innerHTML=this.responseText;
-  //       document.getElementById("livesearch").style.border="1px solid #A5ACB2";
-  //     }
-  //   }
-  //   xmlhttp.open("GET","livesearch.php?q="+str,true);
-  //   xmlhttp.send();
-  // }
+
+function addStudent(){
+  var t = document.getElementById('studenttable');
+  t.onclick = function(event){
+    event = event||window.event;
+    var target = event.target||event.srcElement;
+    while(target&&target.nodeName!='TR'){
+      target = target.parentElement;
+    }
+    var cells = target.cells;
+    if (!cells.length||target.parentNode.nodeName=='thead') {
+      return;
+    }
+    let x = cells[1].innerHTML;
+    var y = document.getElementById('EventID').value;
+    window.location.href = "addstudent.php?tagID="+x+"&evtID="+y;
+    alert("Done");
+  }
+}
+
+function removeStudent(){
+  var t = document.getElementById('studenttable');
+  t.onclick = function(event){
+    event = event||window.event;
+    var target = event.target||event.srcElement;
+    while(target&&target.nodeName!='TR'){
+      target = target.parentElement;
+    }
+    var cells = target.cells;
+    if (!cells.length||target.parentNode.nodeName=='thead') {
+      return;
+    }
+    let x = cells[1].innerHTML;
+    var y = document.getElementById('EventID').value;
+    window.location.href = "removestudent.php?tagID="+x+"&evtID="+y;
+    alert("Done");
+  }
+}
+
   </script>
 </body>
 </html>

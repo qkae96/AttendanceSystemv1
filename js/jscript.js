@@ -1,6 +1,26 @@
 
-function addStudent(){
-    document.getElementById('modalEventID').disabled = false;
+function discardStudentList(){
+  var x = document.forms["studentListSearch"]["EventID"].value;
+  window.location.href = "discardstudentlist.php?evtID=" + x;
+}
+
+function goToEvent(){
+  window.location.href = "/AttendanceSystemv1/event.php";
+}
+
+function addStudentForm(){
+  var x = document.forms["modalUpdateEvent"]["modalEventID"].value;
+  window.location.href = "addstudentform.php?modalEventID=" + x;
+}
+
+function checkSearch(){
+  var x = document.forms["studentListSearch"]["name"].value;
+  if (x=="") {
+    alert("Please enter a name");
+    return false;
+  }else{
+    return true;
+  }
 }
 
 function viewAttendanceFromAttendance(){

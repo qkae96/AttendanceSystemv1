@@ -47,6 +47,7 @@
     bottom: 0;
     width: 100%;
     text-align: center;
+    background: #D3D3D3;
   }
   </style>
 </head>
@@ -161,7 +162,7 @@
             <input type="text" name="modalEventVenue" id="modalEventVenue">
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-info" formaction="php/addstudentform.php">Add Students</button>
+            <button type="submit" class="btn btn-info" formaction="php/addstudentform.php" formmethod="get">Add Students</button>
             <button type="submit" class="btn btn-default" onclick="saveUpdateEvent()">Save</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
@@ -243,7 +244,7 @@
 <footer id="page-footer">
   <div id="footer">
     <div class="footer-bootom">
-      <p>Copyright &copy; 2018 - Web Attendance System <a href="https://um.edu.my">University Malaya</a>. Designed by: <a href="https://www.linkedin.com/in/teowqinkae/">TQK</a> and <a href="https://www.linkedin.com/in/zhiyuteoh/"> TZY</p>
+      <p>Copyright &copy; 2018 - Web Attendance System <a href="https://um.edu.my">University Malaya</a>. Designed by: <a href="https://www.linkedin.com/in/teowqinkae/">TQK</a> and <a href="https://www.linkedin.com/in/zhiyuteoh/"> TZY</a></p>
     </div>
   </div>
 </footer>
