@@ -1,5 +1,10 @@
+<?php
+include 'php/getevent.php';
+if (!isLoggedIn()) {
+		$_SESSION['msg'] = "You must log in first";
+  }
+ ?>
 <!DOCTYPE html>
-<?php include 'php/getevent.php'; ?>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -23,6 +28,7 @@
     bottom: 0;
     width: 100%;
     text-align: center;
+    background: #D3D3D3;
   }
   </style>
 </head>

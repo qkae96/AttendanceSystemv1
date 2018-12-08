@@ -46,55 +46,14 @@ if (!isLoggedIn()) {
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+          <li><a href="event.php">Event</a></li>
+          <li><a href="attendance.php">Attendance</a></li>
+          <li><a href="profile.php">Profile</a></li>
         </ul>
       </div>
     </div>
   </nav>
   <br><br><br><br>
-
-  <!-- Login modal -->
-  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-      <div class="loginmodal-container">
-        <h1>Login to Your Account</h1>
-        <br>
-        <form method="post" action="php/getevent.php">
-          <input type="text" name="username" placeholder="Username">
-					<input type="password" name="password" placeholder="Password">
-					<input type="submit" name="login_btn" class="login loginmodal-submit" value="Login">
-        </form>
-        <div class="login-help">
-          <a href="#" data-toggle="modal" data-target="#register-modal">Register</a> - <a href="#">Forgot Password</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Register modal -->
-  <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-      <div class="registermodal-container">
-        <h1>Register</h1>
-        <br>
-        <form method="post">
-          <input type="text" name="Username" placeholder="Username">
-          <input type="email" name="Email" placeholder="Email">
-					<input type="password" name="Password_1" placeholder="Password">
-					<input type="password" name="Password_2" placeholder="Confirm Password">
-					<input type="submit" name="register_btn" class="register registermodal-submit" value="Register">
-        </form>
-				<div class="login-help">
-          <a href="index.php" data-dismiss="modal">Already a member? Sign in</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
 
   <div class="container">
     <h2>Events</h2>

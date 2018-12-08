@@ -4,10 +4,6 @@ function discardStudentList(){
   window.location.href = "discardstudentlist.php?evtID=" + x;
 }
 
-function goToEvent(){
-  window.location.href = "/AttendanceSystemv1/event.php";
-}
-
 function addStudentForm(){
   var x = document.forms["modalUpdateEvent"]["modalEventID"].value;
   window.location.href = "addstudentform.php?modalEventID=" + x;

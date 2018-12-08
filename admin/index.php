@@ -1,20 +1,25 @@
 <?php
-include 'php/getevent.php';
-if (!isLoggedIn()) {
-		$_SESSION['msg'] = "You must log in first";
-  }
+include '../admin/php/getevent.php';
+if(!isAdmin()){
+	$_SESSION['msg'] = "You must log in first";
+}if(isset($_GET['logout'])){
+	session_destroy();
+  unset($_SESSION['user']);
+  header("location: ../index.php");
+}
  ?>
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jscript.js"></script>
+  <link rel="stylesheet" href="/AttendanceSystemv1/css/style.css">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link rel="stylesheet" href="/AttendanceSystemv1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/AttendanceSystemv1/css/bootstrap-theme.min.css">
+  <script src="/AttendanceSystemv1/js/jquery.min.js"></script>
+  <script src="/AttendanceSystemv1/js/bootstrap.min.js"></script>
+  <script src="/AttendanceSystemv1/js/jscript.js"></script>
   <title>Index</title>
   <style>
   body{
@@ -42,59 +47,44 @@ if (!isLoggedIn()) {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php">Attendance System v1</a>
+        <a class="navbar-brand" href="/AttendanceSystemv1/admin/index.php">Attendance System v1</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+          <li><a href="/AttendanceSystemv1/admin/event.php">Event</a></li>
+          <li><a href="/AttendanceSystemv1/admin/attendance.php">Attendance</a></li>
+          <li><a href="/AttendanceSystemv1/admin/profile.php">Profile</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#logout-modal">Logout</a></li>
         </ul>
       </div>
     </div>
   </nav>
   <br><br><br><br>
 
-  <!-- Login modal -->
-  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-      <div class="loginmodal-container">
-        <h1>Login to Your Account</h1>
-        <br>
-        <form method="post" action="php/getevent.php">
-          <input type="text" name="username" placeholder="Username">
-					<input type="password" name="password" placeholder="Password">
-					<input type="submit" name="login_btn" class="login loginmodal-submit" value="Login">
-        </form>
-        <div class="login-help">
-          <a href="#" data-toggle="modal" data-target="#register-modal">Register</a> - <a href="#">Forgot Password</a>
-        </div>
-      </div>
-    </div>
-  </div>
+	<p>Welcome Admin</p>
 
-  <!-- Register modal -->
-  <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-      <div class="registermodal-container">
-        <h1>Register</h1>
-        <br>
-        <form method="post">
-          <input type="text" name="Username" placeholder="Username">
-          <input type="email" name="Email" placeholder="Email">
-					<input type="password" name="Password_1" placeholder="Password">
-					<input type="password" name="Password_2" placeholder="Confirm Password">
-					<input type="submit" name="register_btn" class="register registermodal-submit" value="Register">
-        </form>
-				<div class="login-help">
-          <a href="index.php" data-dismiss="modal">Already a member? Sign in</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
+	<!-- Logout Modal -->
+	  <div class="modal fade" id="logout-modal" role="dialog">
+	    <div class="modal-dialog">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Logout</h4>
+	        </div>
+	        <form class="modal-body" id="logoutform" method="post" action="/AttendanceSystemv1/admin/index.php?logout='1'">
+	          <div hidden>
+	            <label>Event ID: </label>
+	            <input type="text" name="logout" id="logout" value="1" disabled>
+	          </div>
+	          <p>You are logging out?</p>
+	          <div class="modal-footer">
+	            <button type="submit" class="btn btn-default">Yes</button>
+	            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+	          </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
 
   <div class="container">
     <h2>Events</h2>
@@ -123,11 +113,11 @@ if (!isLoggedIn()) {
 
       <!-- Left and right controls -->
       <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <span class="glyphicon.glyphicon-chevron-left"></span>
+        <span class="glyphicon glyphicon-chevron-left"></span>
         <span class="sr-only">Previous</span>
       </a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <span class="glyphicon.glyphicon-chevron-right"></span>
+        <span class="glyphicon glyphicon-chevron-right"></span>
         <span class="sr-only">Next</span>
       </a>
     </div>
