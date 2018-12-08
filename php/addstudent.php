@@ -5,6 +5,7 @@ $conn = connectTo();
 
 $inputTagID = $_GET["tagID"];
 $inputEventID = $_GET["evtID"];
+$inputProfileID = $_GET["profileID"];
 
 // Find duplicate
 $checkduplicate = "SELECT * FROM attendance WHERE EventID = '$inputEventID' AND TagID = '$inputTagID'";
@@ -19,7 +20,7 @@ if ($count>0) {
         header("Location: {$_SERVER['HTTP_REFERER']}");
   return false;
 }else {
-  $sql = "INSERT INTO attendance(EventID, TagID, CheckIn) VALUES ('$inputEventID', '$inputTagID', null)";
+  $sql = "INSERT INTO attendance(EventID, TagID, ProfileID, Status) VALUES ('$inputEventID', '$inputTagID', '$inputProfileID', 'Registered')";
   if ($conn->query($sql) === TRUE) {
       echo "<script>
               alert('Record added successfully.');

@@ -130,7 +130,7 @@
 
 <?php
   $conn = connectTo();
-  $sql="SELECT attendance.AttendanceID, attendance.CheckIn, attendance.TagID, profile.Name, profile.MatricNo FROM attendance LEFT JOIN profile ON attendance.TagID = profile.TagID WHERE attendance.EventID = $inputEventID";
+  $sql="SELECT attendance.AttendanceID, attendance.CheckIn, attendance.TagID, profile.Name, profile.MatricNo, attendance.CheckOut FROM attendance LEFT JOIN profile ON attendance.TagID = profile.TagID WHERE attendance.EventID = $inputEventID";
 
   $result = mysqli_query($conn,$sql);
   ?>
@@ -139,6 +139,7 @@
   <th>No</th>
   <th hidden>AttendanceID</th>
   <th>CheckIn</th>
+  <th>CheckOut</th>
   <th>TagID</th>
   <th>Name</th>
   <th>Matric No</th>
@@ -150,6 +151,7 @@
         <?php
       echo "<td hidden>" . $row['AttendanceID'] . "</td>";
       echo "<td>" . $row['CheckIn'] . "</td>";
+      echo "<td>" . $row['CheckOut'] . "</td>";
       echo "<td>" . $row['TagID'] . "</td>";
       echo "<td>" . $row['Name'] . "</td>";
       echo "<td>" . $row['MatricNo'] . "</td>";

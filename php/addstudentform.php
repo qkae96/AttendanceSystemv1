@@ -185,6 +185,7 @@
       ?>
       <table class="table table-striped" id="studentList">
       <tr>
+      <th hidden>ProfileID</th>
       <th>No</th>
       <th>TagID</th>
       <th>Name</th>
@@ -197,6 +198,7 @@
           ?>
           <td></td>
           <?php
+          echo "<td hidden>" . $row['ProfileID'] . "</td>";
           echo "<td>" . $row['TagID'] . "</td>";
           echo "<td>" . $row['Name'] . "</td>";
           echo "<td>" . $row['MatricNo'] . "</td>";
@@ -266,7 +268,7 @@ function showResult() {
 
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
+    td = tr[i].getElementsByTagName("td")[3];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -290,9 +292,10 @@ function addStudent(){
     if (!cells.length||target.parentNode.nodeName=='thead') {
       return;
     }
-    let x = cells[1].innerHTML;
+    let w = cells[1].innerHTML;
+    let x = cells[2].innerHTML;
     var y = document.getElementById('EventID').value;
-    window.location.href = "addstudent.php?tagID="+x+"&evtID="+y;
+    window.location.href = "addstudent.php?tagID="+x+"&evtID="+y+"&profileID="+w;
     alert("Done");
   }
 }
@@ -309,7 +312,7 @@ function removeStudent(){
     if (!cells.length||target.parentNode.nodeName=='thead') {
       return;
     }
-    let x = cells[1].innerHTML;
+    let x = cells[2].innerHTML;
     var y = document.getElementById('EventID').value;
     window.location.href = "removestudent.php?tagID="+x+"&evtID="+y;
     alert("Done");
