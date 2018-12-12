@@ -34,7 +34,7 @@ if(!isAdmin()){
   }
 
   #studenttable{
-    margin-left: 10%;
+    margin-left: 5%;
   }
 
   #studentList{
@@ -144,143 +144,147 @@ if(!isAdmin()){
   $EventID = $_GET["modalEventID"];
    ?>
 
-  <div>
-  <table class="table table-striped" id="singleEvent" style="cursor: pointer;">
-    <thead>
-      <tr>
-        <th class="EventID" hidden>Event ID</th>
-        <th class="EventCode">Event Code</th>
-        <th class="EventName">Event Name</th>
-        <th class="EventDate">Event Date</th>
-        <th class="EventStartTime">Event Start Time</th>
-        <th class="EventEndTime">Event End Time</th>
-        <th class="EventVenue">Venue</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php
-      $Event = new Event;
-      $conn = connectTo();
-  		$sql="SELECT * FROM event WHERE EventID = $EventID";
-  		$result = mysqli_query($conn,$sql);
+	 <div>
+	 <table class="table table-striped" id="singleEvent" style="cursor: pointer;">
+	 	<thead>
+	 		<tr>
+	 			<th class="EventID" hidden>Event ID</th>
+	 			<th class="EventCode">Event Code</th>
+	 			<th class="EventName">Event Name</th>
+	 			<th class="EventDate">Event Date</th>
+	 			<th class="EventStartTime">Event Start Time</th>
+	 			<th class="EventEndTime">Event End Time</th>
+	 			<th class="EventVenue">Venue</th>
+	 		</tr>
+	 	</thead>
+	 	<tbody>
+	 	<?php
+	 		$Event = new Event;
+	 		$conn = connectTo();
+	 		$sql="SELECT * FROM event WHERE EventID = $EventID";
+	 		$result = mysqli_query($conn,$sql);
 
-  		while($row = mysqli_fetch_array($result)) {
-          ?>
-          <tr>
-    		    <td id="tableEventID" hidden><?php echo $row['EventID'] ?></td>
-            <?php
-    		    echo "<td>" . $row['EventCode'] . "</td>";
-    		    echo "<td>" . $row['EventName'] . "</td>";
-    		    echo "<td>" . $row['EventDate'] . "</td>";
-    		    echo "<td>" . $row['EventStartTime'] . "</td>";
-    		    echo "<td>" . $row['EventEndTime'] . "</td>";
-    		    echo "<td>" . $row['EventVenue'] . "</td>";
-            ?>
-  		    </tr>
-          <?php
-  			}
-      ?>
-    </tbody>
-  </table>
-  </div>
+	 		while($row = mysqli_fetch_array($result)) {
+	 				?>
+	 				<tr>
+	 					<td id="tableEventID" hidden><?php echo $row['EventID'] ?></td>
+	 					<?php
+	 					echo "<td>" . $row['EventCode'] . "</td>";
+	 					echo "<td>" . $row['EventName'] . "</td>";
+	 					echo "<td>" . $row['EventDate'] . "</td>";
+	 					echo "<td>" . $row['EventStartTime'] . "</td>";
+	 					echo "<td>" . $row['EventEndTime'] . "</td>";
+	 					echo "<td>" . $row['EventVenue'] . "</td>";
+	 					?>
+	 				</tr>
+	 				<?php
+	 			}
+	 		?>
+	 	</tbody>
+	 </table>
+	 </div>
 
-  <br>
+	 <br>
 
-  <div class="container" id="searchContainer">
-    <form class="form-inline" name="studentListSearch" id="addStudentForm" onsubmit="return checkSearch()" autocomplete="off" autofocus>
-      <div hidden>
-        <label for="eventID">Event ID:</label>
-        <input type="text" class="form-control" id="EventID" name="EventID" value="<?=$EventID?>">
-        <label for="startTime">Event Start Time:</label>
-        <input type="time" class="form-control" id="startTime" name="startTime" value="<?=$startTime?>">
-        <label for="endTime">Event End Time:</label>
-        <input type="time" class="form-control" id="endTime" name="endTime" value="<?=$endTime?>">
-        <label for="date">Event Date:</label>
-        <input type="date" class="form-control" id="date" name="date" value="<?=$date?>">
-      </div>
-      <div class="form-group">
-        <label for="inputLabel">Name:</label>
-        <input type="text" class="form-control" name="name" id="searchinput" placeholder="Search here" onkeyup="showResult()" autofocus>
-        <button type="button" class="btn btn-default" onclick="goToEvent()">Save</button>
-        <button type="button" class="btn btn-danger" onclick="discardStudentList()">Cancel</button>
-      </div>
-    </form>
-  </div>
+	 <div class="container" id="searchContainer">
+	 	<form class="form-inline" name="studentListSearch" id="addStudentForm" onsubmit="return checkSearch()" autocomplete="off" autofocus>
+	 		<div hidden>
+	 			<label for="eventID">Event ID:</label>
+	 			<input type="text" class="form-control" id="EventID" name="EventID" value="<?=$EventID?>">
+	 			<label for="startTime">Event Start Time:</label>
+	 			<input type="time" class="form-control" id="startTime" name="startTime" value="<?=$startTime?>">
+	 			<label for="endTime">Event End Time:</label>
+	 			<input type="time" class="form-control" id="endTime" name="endTime" value="<?=$endTime?>">
+	 			<label for="date">Event Date:</label>
+	 			<input type="date" class="form-control" id="date" name="date" value="<?=$date?>">
+	 		</div>
+	 		<div class="form-group">
+	 			<label for="inputLabel">Name:</label>
+	 			<input type="text" class="form-control" name="name" id="searchinput" placeholder="Search here" onkeyup="showResult()" autofocus>
+	 			<button type="button" class="btn btn-default" onclick="goToEvent()">Save</button>
+	 			<button type="button" class="btn btn-danger" onclick="discardStudentList()">Cancel</button>
+	 		</div>
+	 	</form>
+	 </div>
 
-  <br><br>
+	 <br><br>
 
-  <div class="form-group" id="studenttable">
-    <?php
-      $conn = connectTo();
-      $sql="SELECT * FROM profile WHERE ProfileType = 'user'";
+	 <div>
+		 <div class="form-group" id="studenttable">
+		 <?php
+			 $conn = connectTo();
+			 $sql="SELECT * FROM profile WHERE ProfileType = 'user'";
 
-      $result = mysqli_query($conn,$sql);
-      ?>
-      <table class="table table-striped" id="studentList">
-      <tr>
-      <th hidden>ProfileID</th>
-      <th>No</th>
-      <th>TagID</th>
-      <th>Name</th>
-      <th>Matric No</th>
-      <th class="Action" colspan="2">Action</th>
-      </tr>
-    <?php
-      while($row = mysqli_fetch_assoc($result)) {
-          echo "<tr>";
-          ?>
-          <td></td>
-          <?php
-          echo "<td hidden>" . $row['ProfileID'] . "</td>";
-          echo "<td>" . $row['TagID'] . "</td>";
-          echo "<td>" . $row['Name'] . "</td>";
-          echo "<td>" . $row['MatricNo'] . "</td>";
-          ?>
-          <td><button class="btn-success" name="addStudent" type="button" onclick="addStudent()"><span class="glyphicon glyphicon-plus"></span></button></td>
-          <td><button class=btn-danger name=removeStudent type=button onclick="removeStudent()" data-toggle="modal" data-target="#removeStudent"><span class="glyphicon glyphicon-remove"></span></button></td>
-          <?php
-          echo "</tr>";
-      }
-      ?>
-      </table>
-    <?php
-      mysqli_close($conn);
-      ?>
-  </div>
+			 $result = mysqli_query($conn,$sql);
+			 ?>
+			 <table class="table table-striped" id="studentList">
+			 <tr>
+			 <th hidden>ProfileID</th>
+			 <th>No</th>
+			 <th>TagID</th>
+			 <th>Name</th>
+			 <th>Matric No</th>
+			 <th class="Action" colspan="1">Action</th>
+			 </tr>
+		 <?php
+			 while($row = mysqli_fetch_assoc($result)) {
+					 echo "<tr>";
+					 ?>
+					 <td></td>
+					 <?php
+					 echo "<td hidden>" . $row['ProfileID'] . "</td>";
+					 echo "<td>" . $row['TagID'] . "</td>";
+					 echo "<td>" . $row['Name'] . "</td>";
+					 echo "<td>" . $row['MatricNo'] . "</td>";
+					 ?>
+					 <td><button class="btn-success" name="addStudent" type="button" onclick="addStudent()"><span class="glyphicon glyphicon-plus"></span></button></td>
+					 <!-- <td><button class=btn-danger name=removeStudent type=button onclick="removeStudent()" data-toggle="modal" data-target="#removeStudent"><span class="glyphicon glyphicon-remove"></span></button></td> -->
+					 <?php
+					 echo "</tr>";
+			 }
+			 ?>
+			 </table>
+		 <?php
+			 mysqli_close($conn);
+			 ?>
+		</div>
 
-  <div class="form-group" id="studenttableadded">
-    <?php
-      $conn = connectTo();
-      $sql="SELECT attendance.AttendanceID, attendance.CheckIn, attendance.TagID, profile.Name, profile.MatricNo FROM attendance LEFT JOIN profile ON attendance.TagID = profile.TagID WHERE attendance.EventID = $EventID";
+		<div class="form-group" id="studenttableadded">
+		 <?php
+			 $conn = connectTo();
+			 $sql="SELECT attendance.AttendanceID, attendance.CheckIn, attendance.TagID, profile.Name, profile.MatricNo FROM attendance LEFT JOIN profile ON attendance.TagID = profile.TagID WHERE attendance.EventID = $EventID";
 
-      $result = mysqli_query($conn,$sql);
-      ?>
-      <table class="table table-striped" id="studentListAdded">
-      <tr>
-      <th>No</th>
-      <th>TagID</th>
-      <th>Name</th>
-      <th>Matric No</th>
-      </tr>
-    <?php
-      while($row = mysqli_fetch_assoc($result)) {
-          echo "<tr>";
-          ?>
-          <td></td>
-          <?php
-          echo "<td>" . $row['TagID'] . "</td>";
-          echo "<td>" . $row['Name'] . "</td>";
-          echo "<td>" . $row['MatricNo'] . "</td>";
-          echo "</tr>";
-      }
-      ?>
-      </table>
-    <?php
-      mysqli_close($conn);
-      ?>
-  </div>
-
-
+			 $result = mysqli_query($conn,$sql);
+			 ?>
+			 <table class="table table-striped" id="studentListAdded">
+			 <tr>
+			 <th>No</th>
+			 <th>TagID</th>
+			 <th>Name</th>
+			 <th>Matric No</th>
+			 <th class="Action" colspan="1">Action</th>
+			 </tr>
+		 <?php
+			 while($row = mysqli_fetch_assoc($result)) {
+					 echo "<tr>";
+					 ?>
+					 <td></td>
+					 <?php
+					 echo "<td>" . $row['TagID'] . "</td>";
+					 echo "<td>" . $row['Name'] . "</td>";
+					 echo "<td>" . $row['MatricNo'] . "</td>";
+					 ?>
+					 <td><button class=btn-danger name=removeStudent type=button onclick="removeStudent()" data-toggle="modal" data-target="#removeStudent"><span class="glyphicon glyphicon-remove"></span></button></td>
+					 <?php
+					 echo "</tr>";
+			 }
+			 ?>
+			 </table>
+		 <?php
+			 mysqli_close($conn);
+			 ?>
+		</div>
+	 </div>
 
 <footer id="page-footer">
   <div id="footer">
@@ -329,7 +333,6 @@ function addStudent(){
     let x = cells[2].innerHTML;
     var y = document.getElementById('EventID').value;
     window.location.href = "addstudent.php?tagID="+x+"&evtID="+y+"&profileID="+w;
-    alert("Done");
   }
 }
 
@@ -348,7 +351,6 @@ function removeStudent(){
     let x = cells[2].innerHTML;
     var y = document.getElementById('EventID').value;
     window.location.href = "removestudent.php?tagID="+x+"&evtID="+y;
-    alert("Done");
   }
 }
 
