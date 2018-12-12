@@ -1,7 +1,13 @@
 
+// function discardStudentList(){
+//   var x = document.forms["studentListSearch"]["EventID"].value;
+//   window.location.href = "discardstudentlist.php?evtID=" + x;
+// }
+
 function discardStudentList(){
-  var x = document.forms["studentListSearch"]["EventID"].value;
-  window.location.href = "discardstudentlist.php?evtID=" + x;
+  var x = document.getElementById('searchinput');
+  x.value = "";
+  location.reload();
 }
 
 function addStudentForm(){
@@ -38,9 +44,13 @@ function viewAttendanceFromAttendance(){
   }
 }
 
+// function discardAttendance(){
+//   var x = document.forms["attendanceform"]["EventID"].value;
+//   window.location.href = "discardattendance.php?evtID=" + x;
+// }
+
 function discardAttendance(){
-  var x = document.forms["attendanceform"]["EventID"].value;
-  window.location.href = "discardattendance.php?evtID=" + x;
+  window.location.href = "../event.php";
 }
 
 function confirmDeleteAttendance(){

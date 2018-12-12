@@ -22,6 +22,11 @@ if(!isAdmin()){
   <script src="/AttendanceSystemv1/js/jscript.js"></script>
   <title>Add Student</title>
   <style>
+	#searchContainer{
+		margin-left: auto;
+		text-align: center;
+	}
+
   #singleEvent{
     width:70%;
     border-collapse: collapse;
@@ -36,6 +41,11 @@ if(!isAdmin()){
   #studenttable{
     margin-left: 5%;
   }
+
+	#studenttableadded{
+		margin-left: inherit;
+		margin-right: inherit;
+	}
 
   #studentList{
     counter-reset: rowNumber;
@@ -224,7 +234,7 @@ if(!isAdmin()){
 			 <th>TagID</th>
 			 <th>Name</th>
 			 <th>Matric No</th>
-			 <th class="Action" colspan="1">Action</th>
+			 <th class="Action" colspan="2">Action</th>
 			 </tr>
 		 <?php
 			 while($row = mysqli_fetch_assoc($result)) {
@@ -238,7 +248,7 @@ if(!isAdmin()){
 					 echo "<td>" . $row['MatricNo'] . "</td>";
 					 ?>
 					 <td><button class="btn-success" name="addStudent" type="button" onclick="addStudent()"><span class="glyphicon glyphicon-plus"></span></button></td>
-					 <!-- <td><button class=btn-danger name=removeStudent type=button onclick="removeStudent()" data-toggle="modal" data-target="#removeStudent"><span class="glyphicon glyphicon-remove"></span></button></td> -->
+					 <td><button class=btn-danger name=removeStudent type=button onclick="removeStudent()" data-toggle="modal" data-target="#removeStudent"><span class="glyphicon glyphicon-remove"></span></button></td>
 					 <?php
 					 echo "</tr>";
 			 }
@@ -262,7 +272,7 @@ if(!isAdmin()){
 			 <th>TagID</th>
 			 <th>Name</th>
 			 <th>Matric No</th>
-			 <th class="Action" colspan="1">Action</th>
+			 <!-- <th class="Action" colspan="1">Action</th> -->
 			 </tr>
 		 <?php
 			 while($row = mysqli_fetch_assoc($result)) {
@@ -274,7 +284,7 @@ if(!isAdmin()){
 					 echo "<td>" . $row['Name'] . "</td>";
 					 echo "<td>" . $row['MatricNo'] . "</td>";
 					 ?>
-					 <td><button class=btn-danger name=removeStudent type=button onclick="removeStudent()" data-toggle="modal" data-target="#removeStudent"><span class="glyphicon glyphicon-remove"></span></button></td>
+					 <!-- <td><button class=btn-danger name=removeStudent type=button onclick="removeStudent()" data-toggle="modal" data-target="#removeStudent"><span class="glyphicon glyphicon-remove"></span></button></td> -->
 					 <?php
 					 echo "</tr>";
 			 }

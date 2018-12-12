@@ -184,7 +184,7 @@ if(!isAdmin()){
         <label for="inputLabel">Input:</label>
         <input type="text" class="form-control" name="TagID" id="tagID" placeholder="Scan card" maxlength="10" autofocus>
         <button type="submit" class="btn btn-default">Save</button>
-        <button type="button" class="btn btn-danger" onclick="discardAttendance()">Discard</button>
+        <button type="button" class="btn btn-danger" onclick="discardAttendance()">Cancel</button>
       </div>
     </form>
   </div>
