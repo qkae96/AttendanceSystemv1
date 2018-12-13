@@ -110,9 +110,11 @@ if(!isAdmin()){
       $conn = connectTo();
       $sql="SELECT DISTINCT attendance.EventID, event.EventName, event.EventCode, event.EventDate, event.EventStartTime, event.EventEndTime, event.EventVenue FROM attendance LEFT JOIN event ON attendance.EventID = event.EventID";
       $result = mysqli_query($conn,$sql);
-
+     // <form onclick="viewAttendanceFromAttendance()" method="get">
       while($row = mysqli_fetch_array($result)) {
           ?>
+
+          </form>
           <tr>
             <td id="tableEventID"><?php echo $row['EventID'] ?></td>
             <?php
@@ -128,7 +130,7 @@ if(!isAdmin()){
           </tr>
           <?php
         }
-      ?>
+      ?> 
     </tbody>
   </table>
   </div>
