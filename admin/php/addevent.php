@@ -24,8 +24,8 @@ $count = mysqli_num_rows($duplicatequery);
 if ($count>0) {
   echo "<script>
           alert('The record already exists.');
-          window.location.href = '/AttendanceSystemv1/event.php';
-        </script>";
+          window.location.href = '/AttendanceSystemv1/admin/event.php';
+          </script>";
   return false;
 }else {
   $sql = "INSERT INTO event(EventCode, EventName, EventDate, EventStartTime, EventEndTime, EventVenue, RepeatEvent, EndRepeat, EventClockOut, EventDescription) VALUES ('$EventCode', '$EventName', '$EventDate', '$StartTime', '$EndTime', '$Venue', '$RepeatEvent', '$EndRepeat', '$EventClockOut', '$EventDescription')";
