@@ -123,6 +123,7 @@ if(!isAdmin()){
         <th class="EventStartTime">Event Start Time</th>
         <th class="EventEndTime">Event End Time</th>
         <th class="EventVenue">Venue</th>
+				<th class="Description" hidden>Description</th>
         <th class="Action" colspan="3">Action</th>
       </tr>
     </thead>
@@ -145,9 +146,11 @@ if(!isAdmin()){
     		    echo "<td>" . $row['EventStartTime'] . "</td>";
     		    echo "<td>" . $row['EventEndTime'] . "</td>";
     		    echo "<td>" . $row['EventVenue'] . "</td>";
+						echo "<td hidden>" . $row['EventDescription'] . "</td>";
             ?>
             <td><button class=btn-primary name=updateEvent type=button onclick="updateEvent()" data-toggle="modal" data-target="#updateEvent"> Update </button></td>
-            <td><button class=btn-success name=attendance type=button onclick="attendanceModal()" data-toggle="modal" data-target="#attendance"> Attendance </button></td>
+            <!-- <td><button class=btn-success name=attendance type=button onclick="attendanceModal()" data-toggle="modal" data-target="#attendance"> Attendance </button></td> -->
+						<td><button class=btn-success name=attendance type=button onclick="attendanceModal()">Take Attendance</button></td>
             <td><button class=btn-danger name=deleteEvent type=button onclick="deleteEvent()" data-toggle="modal" data-target="#deleteEvent"> Delete </button></td>
   		    </tr>
           <?php
@@ -190,10 +193,17 @@ if(!isAdmin()){
             <label>Event End Time: </label>
             <input type="time" name="modalEndTime" id="modalEndTime">
           </div>
-          <div>
+					<div>
             <label>Event Veue: </label>
-            <input type="text" name="modalEventVenue" id="modalEventVenue">
+						<input type="text" name="modalEventVenue" id="modalEventVenue" hidden>
+            <select id="json-dropdown" name="EventVenue">
+							<option id="modalEventID" selected></option><p><p>
+							</select>
           </div>
+					<div>
+						<label>Description: </label>
+						<input type="text" name="modalDescription" id="modalDescription">
+					</div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-info" formaction="php/addstudentform.php" formmethod="get">Add Students</button>
             <button type="submit" class="btn btn-default" onclick="saveUpdateEvent()">Save</button>
@@ -281,5 +291,37 @@ if(!isAdmin()){
     </div>
   </div>
 </footer>
+<script>
+let dropdown = document.getElementById('json-dropdown');
+dropdown.length = 0;
+let defaultOption = document.createElement('option');
+// defaultOption.text = 'Please select';
+// dropdown.add(defaultOption);
+// dropdown.selectedIndex = 0;
+const url = '/AttendanceSystemv1/json/eventvenue.json';
+const request = new XMLHttpRequest();
+request.open('GET', url, true);
+request.onload = function(){
+	if (request.status===200) {
+		const data = JSON.parse(request.responseText);
+		let option;
+		for (let i = 0; i < data.length; i++) {
+			option = document.createElement('option');
+			option.text = data[i].name +' -- Capacity = '+data[i].capacity;
+			option.value = data[i].name;
+			dropdown.add(option);
+			if (option.value==document.getElementById('modalEventVenue')) {
+				option.selected = true;
+			}
+		}
+	}else {
+		console.log("error");
+	}
+}
+request.onerror = function(){
+	console.console.error('An error occurred fetching the json from '+url);
+};
+request.send();
+</script>
 </body>
 </html>

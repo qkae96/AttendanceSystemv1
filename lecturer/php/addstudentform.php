@@ -22,6 +22,11 @@ if(!isLoggedIn()){
   <script src="/AttendanceSystemv1/js/jscript.js"></script>
   <title>Add Student</title>
   <style>
+	#searchContainer{
+		margin-left: auto;
+		text-align: center;
+	}
+
   #singleEvent{
     width:70%;
     border-collapse: collapse;
@@ -34,8 +39,13 @@ if(!isLoggedIn()){
   }
 
   #studenttable{
-    margin-left: 10%;
+    margin-left: 5%;
   }
+
+	#studenttableadded{
+		margin-left: inherit;
+		margin-right: inherit;
+	}
 
   #studentList{
     counter-reset: rowNumber;
@@ -209,6 +219,7 @@ if(!isLoggedIn()){
 
   <br><br>
 
+	<div>
   <div class="form-group" id="studenttable">
     <?php
       $conn = connectTo();
@@ -279,13 +290,14 @@ if(!isLoggedIn()){
       mysqli_close($conn);
       ?>
   </div>
+</div>
 
 
 
 <footer id="page-footer">
   <div id="footer">
     <div class="footer-bootom">
-      <!-- <p>Copyright &copy; 2018 - Web Attendance System <a href="https://um.edu.my">University Malaya</a>. Designed by: <a href="https://www.linkedin.com/in/teowqinkae/">TQK</a> and <a href="https://www.linkedin.com/in/zhiyuteoh/"> TZY</a></p> -->
+      <p>Copyright &copy; 2018 - Web Attendance System <a href="https://um.edu.my">University Malaya</a>. Designed by: <a href="https://www.linkedin.com/in/teowqinkae/">TQK</a> and <a href="https://www.linkedin.com/in/zhiyuteoh/"> TZY</a></p>
     </div>
   </div>
 </footer>
@@ -329,7 +341,6 @@ function addStudent(){
     let x = cells[2].innerHTML;
     var y = document.getElementById('EventID').value;
     window.location.href = "addstudent.php?tagID="+x+"&evtID="+y+"&profileID="+w;
-    alert("Done");
   }
 }
 
@@ -348,7 +359,6 @@ function removeStudent(){
     let x = cells[2].innerHTML;
     var y = document.getElementById('EventID').value;
     window.location.href = "removestudent.php?tagID="+x+"&evtID="+y;
-    alert("Done");
   }
 }
 

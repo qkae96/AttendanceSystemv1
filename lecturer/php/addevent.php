@@ -32,7 +32,6 @@ if ($count>0) {
   if ($conn->query($sql) === TRUE) {
       echo "<script>
               alert('New record created successfully.');
-              window.location.href = '/AttendanceSystemv1/event.php';
             </script>";
   } else {
       echo "Error: " . $sql . "<br>" . $conn->error;

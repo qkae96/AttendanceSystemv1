@@ -21,6 +21,13 @@ if(!isAdmin()){
   <script src="/AttendanceSystemv1/js/jscript.js"></script>
   <title>Attendance</title>
   <style>
+	#eventTable{
+    width:90%;
+    border-collapse: collapse;
+    margin: auto;
+    text-align: center;
+  }
+
   #currentAttendance{
     width:60%;
     border-collapse: collapse;
@@ -116,6 +123,49 @@ if(!isAdmin()){
   $date = $_GET['date'];
   ?>
 
+	<div>
+  <table class="table table-striped" id="eventTable" style="cursor: pointer;">
+    <thead>
+      <tr>
+				<th hidden>No</th>
+        <th class="EventID">Event ID</th>
+        <th class="EventCode">Event Code</th>
+        <th class="EventName">Event Name</th>
+        <th class="EventDate">Event Date</th>
+        <th class="EventStartTime">Event Start Time</th>
+        <th class="EventEndTime">Event End Time</th>
+        <th class="EventVenue">Venue</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+      $Event = new Event;
+      $conn = connectTo();
+      $sql="SELECT * FROM event WHERE event.EventID=$inputEventID";
+      $result = mysqli_query($conn,$sql);
+
+      while($row = mysqli_fetch_array($result)) {
+          ?>
+          <tr>
+						<td hidden></td>
+            <td id="tableEventID"><?php echo $row['EventID'] ?></td>
+            <?php
+            echo "<td>" . $row['EventCode'] . "</td>";
+            echo "<td>" . $row['EventName'] . "</td>";
+            echo "<td>" . $row['EventDate'] . "</td>";
+            echo "<td>" . $row['EventStartTime'] . "</td>";
+            echo "<td>" . $row['EventEndTime'] . "</td>";
+            echo "<td>" . $row['EventVenue'] . "</td>";
+            ?>
+          </tr>
+          <?php
+        }
+      ?>
+    </tbody>
+  </table>
+  </div>
+
+	<br>
 
   <div class="container" id="inputContainer">
     <form class="form-inline" name="attendanceform" id="attendanceform" onsubmit="return checkInput()" method="post" action="../php/attendanceform.php" autocomplete="off" autofocus>

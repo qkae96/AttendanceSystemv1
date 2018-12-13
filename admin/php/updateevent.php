@@ -11,8 +11,9 @@ $EventDate = $_POST["modalEventDate"];
 $StartTime = $_POST["modalStartTime"];
 $EndTime = $_POST["modalEndTime"];
 $Venue = $_POST["modalEventVenue"];
+$Description = $_POST["modalDescription"];
 
-$sql = "UPDATE event SET EventCode='$EventCode', EventName='$EventName', EventDate='$EventDate', EventStartTime='$StartTime', EventEndTime='$EndTime', EventVenue='$Venue' WHERE EventID = '$EventID'";
+$sql = "UPDATE event SET EventCode='$EventCode', EventName='$EventName', EventDate='$EventDate', EventStartTime='$StartTime', EventEndTime='$EndTime', EventVenue='$Venue', EventDescription='$Description' WHERE EventID = '$EventID'";
 
 if (mysqli_query($conn, $sql)) {
   echo "Recorded";

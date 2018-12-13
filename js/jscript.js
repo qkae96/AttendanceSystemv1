@@ -1,7 +1,13 @@
 
+// function discardStudentList(){
+//   var x = document.forms["studentListSearch"]["EventID"].value;
+//   window.location.href = "discardstudentlist.php?evtID=" + x;
+// }
+
 function discardStudentList(){
-  var x = document.forms["studentListSearch"]["EventID"].value;
-  window.location.href = "discardstudentlist.php?evtID=" + x;
+  var x = document.getElementById('searchinput');
+  x.value = "";
+  location.reload();
 }
 
 function addStudentForm(){
@@ -22,7 +28,7 @@ function viewDatabaseFromAttendance(){
     document.getElementById('viewAttendanceEventID').disabled = false;
     var x = document.getElementById('viewDatabaseEventID').value;
     window.location.href = "../php/database.php?evtID=" + x.value;
-  
+
 }
 function viewAttendanceFromAttendance(){
   var t = document.getElementById('attendanceTable');
@@ -43,9 +49,13 @@ function viewAttendanceFromAttendance(){
   }
 }
 
+// function discardAttendance(){
+//   var x = document.forms["attendanceform"]["EventID"].value;
+//   window.location.href = "discardattendance.php?evtID=" + x;
+// }
+
 function discardAttendance(){
-  var x = document.forms["attendanceform"]["EventID"].value;
-  window.location.href = "discardattendance.php?evtID=" + x;
+  window.location.href = "../event.php";
 }
 
 function confirmDeleteAttendance(){
@@ -97,24 +107,45 @@ function attendanceModal(){
     if (!cells.length||target.parentNode.nodeName=='thead') {
       return;
     }
-    var x = document.getElementById('attendanceEventID');
-    x.value = cells[1].innerHTML;
+    let x = cells[1].innerHTML;
+    let y = cells[5].innerHTML;
+    let z = cells[6].innerHTML;
+    let date = cells[4].innerHTML;
 
-    var f = document.getElementById('attendanceEventCode');
-    var f1 = document.getElementById('attendanceEventName');
-    var f2 = document.getElementById('attendanceEventDate');
-    var f3 = document.getElementById('attendanceStartTime');
-    var f4 = document.getElementById('attendanceEndTime');
-    var f5 = document.getElementById('attendanceEventVenue');
-
-    f.value = cells[2].innerHTML;
-    f1.value = cells[3].innerHTML;
-    f2.value = cells[4].innerHTML;
-    f3.value = cells[5].innerHTML;
-    f4.value = cells[6].innerHTML;
-    f5.value = cells[7].innerHTML;
+    window.location.href = "php/takeattendance.php?evtID="+x+"&startTime="+y+"&endTime="+z+"&date="+date;
   }
 }
+
+// function attendanceModal(){
+//   var t = document.getElementById('eventTable');
+//   t.onclick = function(event){
+//     event = event||window.event;
+//     var target = event.target||event.srcElement;
+//     while(target&&target.nodeName!='TR'){
+//       target = target.parentElement;
+//     }
+//     var cells = target.cells;
+//     if (!cells.length||target.parentNode.nodeName=='thead') {
+//       return;
+//     }
+//     var x = document.getElementById('attendanceEventID');
+//     x.value = cells[1].innerHTML;
+//
+//     var f = document.getElementById('attendanceEventCode');
+//     var f1 = document.getElementById('attendanceEventName');
+//     var f2 = document.getElementById('attendanceEventDate');
+//     var f3 = document.getElementById('attendanceStartTime');
+//     var f4 = document.getElementById('attendanceEndTime');
+//     var f5 = document.getElementById('attendanceEventVenue');
+//
+//     f.value = cells[2].innerHTML;
+//     f1.value = cells[3].innerHTML;
+//     f2.value = cells[4].innerHTML;
+//     f3.value = cells[5].innerHTML;
+//     f4.value = cells[6].innerHTML;
+//     f5.value = cells[7].innerHTML;
+//   }
+// }
 
 function checkInput(){
   var x = document.forms["attendanceform"]["TagID"].value;
@@ -147,6 +178,7 @@ function deleteEvent(){
     x.value = cells[1].innerHTML;
   }
 }
+
 function saveUpdateStudent(){
   document.getElementById('modalProfileID').disabled = false;
   alert("Updated");
@@ -187,6 +219,7 @@ function updateStudent(){
     f5.value = cells[7].innerHTML;
   }
 }
+
 function updateEvent(){
   var t = document.getElementById('eventTable');
   t.onclick = function(event){
@@ -208,6 +241,7 @@ function updateEvent(){
     var f3 = document.getElementById('modalStartTime');
     var f4 = document.getElementById('modalEndTime');
     var f5 = document.getElementById('modalEventVenue');
+    var f6 = document.getElementById('modalDescription');
 
     f.value = cells[2].innerHTML;
     f1.value = cells[3].innerHTML;
@@ -215,6 +249,7 @@ function updateEvent(){
     f3.value = cells[5].innerHTML;
     f4.value = cells[6].innerHTML;
     f5.value = cells[7].innerHTML;
+    f6.value = cells[8].innerHTML;
   }
 }
 

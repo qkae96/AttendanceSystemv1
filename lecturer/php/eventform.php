@@ -126,7 +126,7 @@ if(!isLoggedIn()){
   					<option>None</option>
   					<option>Weekly</option>
   					<option>Daily</option>
-  					<option>Monthly</option>
+  					<!-- <option>Monthly</option> -->
   				</select>
   			</div>
         <div>
