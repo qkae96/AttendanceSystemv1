@@ -18,7 +18,12 @@ function checkSearch(){
     return true;
   }
 }
-
+function viewDatabaseFromAttendance(){
+    document.getElementById('viewAttendanceEventID').disabled = false;
+    var x = document.getElementById('viewDatabaseEventID').value;
+    window.location.href = "../php/database.php?evtID=" + x.value;
+  
+}
 function viewAttendanceFromAttendance(){
   var t = document.getElementById('attendanceTable');
   t.onclick = function(event){
@@ -142,12 +147,46 @@ function deleteEvent(){
     x.value = cells[1].innerHTML;
   }
 }
+function saveUpdateStudent(){
+  document.getElementById('modalProfileID').disabled = false;
+  alert("Updated");
+}
 
 function saveUpdateEvent(){
   document.getElementById('modalEventID').disabled = false;
   alert("Updated");
 }
 
+function updateStudent(){
+  var t = document.getElementById('studentList');
+  t.onclick = function(profile){
+    profile = profile||window.profile;
+    var target = profile.target||profile.srcElement;
+    while(target&&target.nodeName!='TR'){
+      target = target.parentElement;
+    }
+    var cells = target.cells;
+    if (!cells.length||target.parentNode.nodeName=='thead') {
+      return;
+    }
+    var x = document.getElementById('modalName');
+    x.value = cells[1].innerHTML;
+
+    var f = document.getElementById('modalMatricNo');
+    var f1 = document.getElementById('modalTagID');
+    var f2 = document.getElementById('modalProfileType');
+    var f3 = document.getElementById('modalEmail');
+    var f4 = document.getElementById('modalPhoneNo');
+    var f5 = document.getElementById('modalUsername');
+
+    f.value = cells[2].innerHTML;
+    f1.value = cells[3].innerHTML;
+    f2.value = cells[4].innerHTML;
+    f3.value = cells[5].innerHTML;
+    f4.value = cells[6].innerHTML;
+    f5.value = cells[7].innerHTML;
+  }
+}
 function updateEvent(){
   var t = document.getElementById('eventTable');
   t.onclick = function(event){
@@ -182,7 +221,41 @@ function updateEvent(){
 function addEvent(){
   window.location = "php/eventform.php";
 }
-
+function validateStudentForm(){
+  var x = document.forms["eventForm"]["EventCode"].value;
+  if (x=="") {
+    alert("Event code must be filled out");
+    return false;
+  }
+  var x1 = document.forms["eventForm"]["EventName"].value;
+  if (x1=="") {
+    alert("Event name must be filled out");
+    return false;
+  }
+  var x2 = document.forms["eventForm"]["EventDate"].value;
+  if (x2=="") {
+    alert("Event date must be filled out");
+    return false;
+  }
+  var x3 = document.forms["eventForm"]["EventStartTime"].value;
+  if (x3=="") {
+    alert("Event start time must be filled out");
+    return false;
+  }
+  var x4 = document.forms["eventForm"]["EventEndTime"].value;
+  if (x4=="") {
+    alert("Event end time must be filled out");
+    return false;
+  }
+  var x5 = document.forms["eventForm"]["EventVenue"].value;
+  if (x5=="") {
+    alert("Event venue must be filled out");
+    return false;
+  }
+  else {
+    return true;
+  }
+}
 function validateEventForm(){
   var x = document.forms["eventForm"]["EventCode"].value;
   if (x=="") {
