@@ -176,5 +176,16 @@ class Event
   private $ProfileID;
   private $EventCode;
 }
+class Profile{
+  private $ProfileID; 
+  private $Name; 
+  private $MatricNo; 
+  private $TagID; 
+  private $ProfileType; 
+  private $Email; 
+  private $PhoneNo; 
+  private $Username; 
+  private $Password;
+}
 
  ?>

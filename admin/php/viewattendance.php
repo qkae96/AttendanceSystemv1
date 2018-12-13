@@ -1,5 +1,7 @@
 <?php
 include 'getevent.php';
+define('FPDF_FONTPATH','font/');
+require('../../fpdf/fpdf.php');
 if(!isAdmin()){
 	$_SESSION['msg'] = "You must log in first";
 }if(isset($_GET['logout'])){
@@ -126,6 +128,23 @@ if(!isAdmin()){
   ?>
 
   <br>
+  <div class="container" style="padding-top:50px">
+    <form class="form-inline" method="post" action="../php/generate_pdf.php">
+      <div hidden="">
+        <label >Event ID: </label>
+      <input type="text" name="viewDatabaseEventID" id="viewDatabaseEventID" value="<?=$inputEventID?>"></div>
+    <button type="submit" id="pdf" name="generate_pdf" class="btn btn-primary"><i class="fa fa-pdf"" aria-hidden="true"></i>
+    Generate PDF</button>
+    </form>
+    </fieldset>
+  </div>
+
+    <form id="getAttendanceEventID" method="post">
+    <div hidden>
+      <label>Event ID: </label>
+      <input type="text" name="viewDatabaseEventID" id="viewDatabaseEventID" value="<?=$inputEventID?>" disabled>
+    </div>
+  </form>
 
   <div>
   <table class="table table-striped" id="eventTable" style="cursor: pointer;">
