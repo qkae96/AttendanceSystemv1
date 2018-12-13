@@ -126,7 +126,7 @@ if(!isAdmin()){
   					<option>None</option>
   					<option>Weekly</option>
   					<option>Daily</option>
-  					<!-- <option>Monthly</option> -->
+  					<option>Monthly</option>
   				</select>
   			</div>
         <div>
@@ -136,7 +136,7 @@ if(!isAdmin()){
       </div>
 		</div>
 
-		<div class="form-group row" hidden>
+		<div class="form-group row">
 			<label for="EventClockOut" class="col-sm-2">Required to clock out?</label>
 			<div class="col-sm-2">
 				<select type="text" class="custom-select" name="EventClockOut">

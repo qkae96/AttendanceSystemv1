@@ -1,8 +1,8 @@
 <?php
 DEFINE('servername','127.0.0.1');
 DEFINE('username', 'root');
-DEFINE('password', '');
-DEFINE('dbname', 'attendancesystem');
+DEFINE('password', 'test123');
+DEFINE('dbname', 'login');
 
 function connectTo(){
 	$conn = mysqli_connect(servername, username, password, dbname);

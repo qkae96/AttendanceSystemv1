@@ -32,6 +32,7 @@ if ($count>0) {
   if ($conn->query($sql) === TRUE) {
       echo "<script>
               alert('New record created successfully.');
+              window.location.href = '/AttendanceSystemv1/event.php';
             </script>";
   } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
@@ -45,11 +46,6 @@ if ($count>0) {
 //     echo "New record created successfully";
 // } else {
 //     echo "Error: " . $sql . "<br>" . $conn->error;
-// }
-// while (strtotime($EventDate)<=strtotime($EndRepeat)) {
-//   $date = $EventDate;
-//   date_add($EventDate, date_interval_create_from_date_string("7 days"));
-//   echo $date;
 // }
 $conn->close();
 header("Location: ../event.php");
